@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games</title>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="conttainer">
+            <a class="" href="index.html">NatureNest</a>
+        </div>
+    </nav>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .navbar {
+            background: linear-gradient(to right, #054215, #8dea61);
+            color: white;
+            padding: 15px;
+        }
+
+        .navbar a {
+            color: rgb(221, 230, 226);
+            text-decoration: none;
+            padding: 10px;
+        }
+
+        .navbar a.active {
+            background-color: #555;
+        }
+    </style>
+
+    <!--bee-->
+    <div class="garden-buddy" onclick="showTip()">
+        <img src="images/—Pngtree—cartoon clipart cute vector insect_5528299.png" alt="Garden Buddy" />
+        <div id="buddy-tip" class="buddy-tip hidden">🌱 Drink water, like your plants!</div>
+    </div>
+    <style>
+        .garden-buddy {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            cursor: pointer;
+            animation: floaty 3s ease-in-out infinite;
+            z-index: 1000;
+        }
+
+        .garden-buddy img {
+            width: 90px;
+            transition: transform 0.3s ease;
+        }
+
+        .garden-buddy:hover img {
+            transform: rotate(5deg) scale(1.05);
+        }
+
+        .buddy-tip {
+            position: absolute;
+            bottom: 110%;
+            right: 0;
+            background-color: #ffffffcc;
+            color: #2f3e46;
+            padding: 10px 15px;
+            border-radius: 15px;
+            border: 2px solid #a7e0a5;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            white-space: nowrap;
+            font-size: 0.9rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        @keyframes floaty {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+    <script>
+        const tips = [
+            "🌱 Drink water, like your plants!",
+            "☀️ Sunlight makes everything better!",
+            "🪴 Talk to your plants — they love it!",
+            "🌼 Take time to bloom!",
+            "🧤 Don’t forget to repot sometimes!",
+            "🐝 Bees love wildflowers!",
+        ];
+
+        function showTip() {
+            const tipBox = document.getElementById("buddy-tip");
+            const randomTip = tips[Math.floor(Math.random() * tips.length)];
+            tipBox.textContent = randomTip;
+
+            tipBox.classList.remove("hidden");
+            setTimeout(() => {
+                tipBox.classList.add("hidden");
+            }, 3000);
+        }
+
+    </script>
+    <!--game-->
+    <div class="game-container">
+        <div id="score">Score: 0</div>
+        <div class="basket" id="basket">🧺</div>
+    </div>
+    <div class="start-screen" id="startScreen">
+        <h1>🌱 Plant Catcher Game</h1>
+        <button onclick="startGame()">Start Game</button>
+        
+
+    </div>
+    <style>
+        .game-container {
+            position: relative;
+            width: 100vw;
+            height: 90vh;
+        }
+
+        #score {
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .basket {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.5rem;
+            transition: left 0.1s;
+        }
+
+        .falling {
+            position: absolute;
+            font-size: 2rem;
+            top: 0;
+            animation: fall 4s linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                top: 100vh;
+            }
+        }
+
+        .start-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #aed581;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .start-screen h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .start-screen button {
+            font-size: 1.2rem;
+            padding: 0.7rem 1.5rem;
+            background-color: #558b2f;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .start-screen button:hover {
+            background-color: #33691e;
+        }
+    </style>
+    <script>
+        let score = 0;
+        let basket = document.getElementById('basket');
+        let gameContainer = document.querySelector('.game-container');
+        let scoreDisplay = document.getElementById('score');
+        let startScreen = document.getElementById('startScreen');
+
+        let gameInterval;
+        let gameTime = 60; // seconds
+        let currentSpeed = 4000; // ms
+        let timerElement;
+
+        const catchSound = new Audio("catch.mp3");
+        const wrongSound = new Audio("wrong.mp3");
+
+        document.addEventListener('mousemove', (e) => {
+            basket.style.left = `${e.clientX}px`;
+        });
+
+        function startGame() {
+            score = 0;
+            currentSpeed = 4000;
+            scoreDisplay.innerHTML = `Score: 0 <span id="timer">⏱️ 60s</span>`;
+            startScreen.style.display = 'none';
+
+            startTimer();
+            gameInterval = setInterval(spawnItem, 800);
+
+            // Speed up every 20 seconds
+            setTimeout(() => currentSpeed = 3000, 20000);
+            setTimeout(() => currentSpeed = 2000, 40000);
+
+            setTimeout(endGame, gameTime * 1000);
+        }
+
+        function startTimer() {
+            let secondsLeft = gameTime;
+            timerElement = document.getElementById('timer');
+            const countdown = setInterval(() => {
+                secondsLeft--;
+                if (timerElement) timerElement.textContent = `⏱️ ${secondsLeft}s`;
+                if (secondsLeft <= 0) clearInterval(countdown);
+            }, 1000);
+        }
+
+        function spawnItem() {
+            const item = document.createElement('div');
+            item.classList.add('falling');
+
+            const isPlant = Math.random() > 0.3;
+            item.textContent = isPlant ? '🌱' : '🗑️';
+            item.dataset.type = isPlant ? 'plant' : 'trash';
+            item.style.left = Math.random() * 90 + 'vw';
+            item.style.animationDuration = currentSpeed / 1000 + 's';
+
+            gameContainer.appendChild(item);
+
+            const itemFall = setInterval(() => {
+                const itemRect = item.getBoundingClientRect();
+                const basketRect = basket.getBoundingClientRect();
+
+                if (
+                    itemRect.bottom >= basketRect.top &&
+                    itemRect.left < basketRect.right &&
+                    itemRect.right > basketRect.left
+                ) {
+                    if (item.dataset.type === 'plant') {
+                        score += 10;
+                        catchSound.play();
+                    } else {
+                        score -= 10;
+                        wrongSound.play();
+                    }
+                    scoreDisplay.innerHTML = `Score: ${score} <span id="timer">⏱️</span>`;
+                    item.remove();
+                    clearInterval(itemFall);
+                }
+
+                if (itemRect.top > window.innerHeight) {
+                    item.remove();
+                    clearInterval(itemFall);
+                }
+            }, 50);
+        }
+
+        function endGame() {
+            clearInterval(gameInterval);
+            updateLeaderboard(score);
+            const topScores = getLeaderboard();
+            alert(`⏱️ Time's up!\nYour score: ${score}\n\n🏆 Top Scores:\n${topScores.join('\n')}`);
+            startScreen.style.display = 'flex';
+        }
+
+        // Leaderboard logic
+        function updateLeaderboard(newScore) {
+            let scores = JSON.parse(localStorage.getItem('plantScores')) || [];
+            scores.push(newScore);
+            scores.sort((a, b) => b - a);
+            scores = scores.slice(0, 5); // Keep top 5
+            localStorage.setItem('plantScores', JSON.stringify(scores));
+        }
+
+        function getLeaderboard() {
+            return JSON.parse(localStorage.getItem('plantScores')) || [];
+        }
+
+    </script>
+
+
+
+
+</body>
+
+</html>

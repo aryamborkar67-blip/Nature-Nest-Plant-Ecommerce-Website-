@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide</title>
+    <audio id="chime-sound" src="https://www.myinstants.com/media/sounds/magic.mp3" preload="auto"></audio>
+
+
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a class="sss" href="index.html">NatureNest</a>
+        </div>
+    </nav>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+            text-transform: capitalize;
+            outline: none;
+            border: none;
+            text-decoration: none;
+            transition: .3s;
+
+        }
+
+        html {
+            font-size: 62.5%;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            scroll-padding-top: 7rem;
+            background-color: #f7fbf8;
+        }
+
+        .navbar {
+            background: linear-gradient(to right, #054215, #8dea61);
+            color: white;
+            padding: 15px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+        }
+
+        .navbar a.active {
+            background-color: #555;
+        }
+       
+    </style>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!--Did you know-->
+    <div id="factModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3>🌼 Did You Know?</h3>
+            <p id="garden-fact">Loading tip...</p>
+            <button class="refresh-btn" onclick="refreshTip()">🔁 New Tip</button>
+            <div id="sparkle"></div>
+        </div>
+    </div>
+
+
+    <style>
+        /* Modal background */
+        .modal {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 50, 0, 0.6);
+            animation: fadeIn 1s ease;
+        }
+
+        /* Modal content box */
+        .modal-content {
+            background-color: #f0f9f0;
+            border: 3px solid #a5d6a7;
+            padding: 2rem;
+            border-radius: 18px;
+            text-align: center;
+            max-width: 500px;
+            position: relative;
+            animation: slideIn 0.8s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .modal-content h3 {
+            color: #388e3c;
+            margin-bottom: 1rem;
+        }
+
+        .modal-content p {
+            font-size: 1.2rem;
+            color: #4b684b;
+            transition: opacity 0.5s ease;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-size: 24px;
+            color: #666;
+            cursor: pointer;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .refresh-btn {
+            margin-top: 1rem;
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #81c784;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .refresh-btn:hover {
+            background-color: #66bb6a;
+        }
+
+        /* Sparkle */
+        #sparkle {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-image: radial-gradient(circle, #fffacd, transparent);
+            pointer-events: none;
+            display: none;
+            z-index: 1000;
+            animation: sparkleFade 1s forwards;
+        }
+
+        @keyframes sparkleFade {
+            0% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(3);
+            }
+        }
+    </style>
+    <script>
+        const gardenFacts = [
+            "Banana peels make great compost boosters! 🍌",
+            "Coffee grounds are excellent for acid-loving plants ☕️",
+            "You can regrow lettuce from the base in water 🥬",
+            "Rainwater is better for plants than tap water 💧",
+            "Marigolds help keep pests away from vegetables 🌼",
+            "Mulch keeps soil cool and prevents weeds 🌿",
+            "Most herbs love at least 6 hours of sun ☀️",
+            "Basil and tomatoes grow better together 🍅🌿",
+            "Worms improve your soil's health 🪱",
+            "Deadheading flowers makes them bloom more 🌸",
+            "Cinnamon prevents fungus in seedlings 🌱",
+            "Ladybugs eat aphids and protect your plants 🐞"
+        ];
+
+        function showDailyFact() {
+            const today = new Date();
+            const dayOfYear = Math.floor(
+                (today - new Date(today.getFullYear(), 0, 0)) / 86400000
+            );
+
+            const index = dayOfYear % gardenFacts.length;
+            const factEl = document.getElementById("garden-fact");
+
+            // Fade in animation
+            factEl.style.opacity = 0;
+            setTimeout(() => {
+                factEl.innerText = gardenFacts[index];
+                factEl.style.opacity = 1;
+            }, 300);
+        }
+
+        function closeModal() {
+            document.getElementById("factModal").style.display = "none";
+        }
+
+        window.onload = function () {
+            showDailyFact();
+            setTimeout(() => {
+                document.getElementById("factModal").style.display = "flex";
+            }, 500);
+        };
+
+        function getRandomTip() {
+            return gardenFacts[Math.floor(Math.random() * gardenFacts.length)];
+        }
+
+        function refreshTip() {
+            const factEl = document.getElementById("garden-fact");
+            const sparkle = document.getElementById("sparkle");
+            const sound = document.getElementById("chime-sound");
+
+            // Play sound
+            sound.currentTime = 0;
+            sound.play();
+
+            // Animate tip
+            factEl.style.opacity = 0;
+            setTimeout(() => {
+                factEl.innerText = getRandomTip();
+                factEl.style.opacity = 1;
+
+                // Show sparkle at random spot
+                const modal = document.querySelector('.modal-content');
+                const x = Math.random() * modal.offsetWidth;
+                const y = Math.random() * modal.offsetHeight;
+                sparkle.style.left = `${x}px`;
+                sparkle.style.top = `${y}px`;
+                sparkle.style.display = 'block';
+
+                setTimeout(() => sparkle.style.display = 'none', 1000);
+            }, 300);
+        }
+
+
+
+    </script>
+    <section class="recom" id="guide"></section>
+    <h1 class="heading"
+        style="text-align: center; font-size: 3rem; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+        YOUR PLANT GUIDE</h1>
+    <br>
+    <br>
+    <h2 style="color: #1cc34c; text-align: center;">Not sure which plant is right for you? Our Plant Recommendation
+        System makes plant
+        shopping easy and personalized! <br> if you’re a beginner, we help you find the perfect plant based on
+        humidity,
+        sunlight conditions, soil type, and climate conditions.</h2>
+    <br>
+    <br>
+    <div class="vaati" style="background-image: url(images/5250596.jpg); background-size: cover;">
+        <div class="spoon">
+            <h1>Find Your Perfect Green Companion!</h1>
+
+            <label for="sunlight">Sunlight:</label>
+            <select id="sunlight">
+                <option value="full_sun">Full Sun</option>
+                <option value="partial_shade">Partial Shade</option>
+                <option value="low_light">Low Light</option>
+            </select>
+
+            <label for="humidity">Humidity:</label>
+            <select id="humidity">
+                <option value="high">Above 50%</option>
+                <option value="moderate">20% to 50%</option>
+                <option value="low">Below 20%</option>
+            </select>
+            <label for="temperature">Temperature:</label>
+            <select id="temperature">
+                <option value="warm">Above 50°C</option>
+                <option value="moderate">20°C to 50°C</option>
+                <option value="cool"> below 20°C</option>
+            </select>
+            <label for="soil">Soil Type:</label>
+            <select id="soil">
+                <option value="sandy">Sandy</option>
+                <option value="loamy">Loamy</option>
+                <option value="clay">Clay</option>
+                <option value="well-drained">well-drained</option>
+            </select>
+
+
+            <label for="ph">Soil pH:</label>
+            <select id="ph">
+                <option value="acidic">Acidic</option>
+                <option value="Neutral">Neutral</option>
+                <option value="Alkaline">Alkaline</option>
+            </select>
+            <br>
+            <br>
+
+            <button onclick="recommendPlants()">Get Recommendations</button>
+            <br>
+            <br>
+            <br>
+            <h2>🌿 Recommended Plants:</h2>
+            <br>
+            <br>
+            <ul id="recommendations"></ul>
+        </div>
+    </div>
+
+    <style>
+        .spoon {
+            max-width: 600px;
+            margin: auto;
+            background: rgb(193, 236, 199);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
+        }
+
+        h1,
+        h2 {
+            color: #2d6a4f;
+        }
+
+        label,
+        select {
+            display: block;
+            margin: 10px auto;
+            font-size: 16px;
+        }
+
+        select {
+            padding: 8px;
+            width: 100%;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            border: none;
+            background-color: #40916c;
+            color: rgb(251, 250, 250);
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #1b4332;
+        }
+
+        .ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            background: #fff;
+            color: #030303;
+            margin: 5px;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h2 style="color: #1cc34c; text-align: center;">want more help? Our AI-Powered Plant Chatbot is your personal
+        gardening assistant,
+        available 24/7 to help with all your plant-related queries. <br>Whether you're a beginner or an experienced
+        plant lover, you may ask anything!</h2>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="back" style="background-image: url(images/chatbot\ back.png); background-size: cover;">
+        <div class="chat-container">
+            <div class="chat-header">
+                <h1>Your Plant Guide</h1>
+            </div>
+            <div class="chat-messages" id="chat-messages"></div>
+            <div class="chat-input-container">
+                <input type="text" id="user-input" placeholder="How can we help you...">
+                <button id="send-button">Send</button>
+            </div>
+        </div>
+    </div>
+    <style>
+        .chat-container {
+            width: 50%;
+            max-width: 1000px;
+            background-color: #f9fdfa;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 60vh;
+            margin-left: 65rem;
+        }
+
+        .chat-header {
+            background-color: #054b06;
+
+            padding: 15px;
+            text-align: center;
+        }
+
+        .chat-header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .chat-messages {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .message {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .message-content {
+            padding: 10px;
+            border-radius: 5px;
+            max-width: 70%;
+        }
+
+        .user-message {
+            flex-direction: row-reverse;
+        }
+
+        .user-message .message-content {
+            background-color: #80cd88;
+            margin-right: 10px;
+            color: #064c11;
+        }
+
+        .bot-message .message-content {
+            background-color: #064c11;
+            margin-left: 10px;
+            color: #fff;
+        }
+
+        .profile-image {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .chat-input-container {
+            display: flex;
+            padding: 15px;
+            background-color: #ceddce;
+        }
+
+        #user-input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: #fff;
+            color: #021d09;
+            outline: none;
+        }
+
+        #send-button {
+            padding: 10px 20px;
+            background-color: #054b06;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            margin-left: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        #send-button:hover {
+            background-color: #4ae26d;
+        }
+
+        #send-button:disabled {
+            background-color: #2a5a8a;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 480px) {
+            .chat-container {
+                height: 100vh;
+                border-radius: 0;
+            }
+        }
+
+        /* Scrollbar Styles */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #fff;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #04381b;
+            border-radius: 1px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #5a5a5a;
+        }
+    </style>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <style>
+        body {
+
+            padding: 2rem;
+        }
+
+        .containeer {
+            background: rgb(215, 239, 223);
+            padding: 20px;
+            border-radius: 10px;
+            width: 200px;
+            margin: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            height: auto;
+            margin-top: 2rem;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .video-container {
+            margin-top: 20px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 315px;
+            border-radius: 10px;
+            border: none;
+        }
+    </style>
+    <h2 style="color: #1cc34c; text-align: center;">At Green House, we believe gardening is an art that anyone can
+        master! Our Gardening
+        Tutorials provide step-by-step guidance on everything from basic plant care to advanced gardening
+        techniques. Whether you're a beginner or an experienced gardener, our tutorials cover essential topics</h2>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="magcha"
+        style="background-image: url(images/vecteezy_ai-generated-wooden-table-top-on-green-background-with-green_37313746.jpg); background-size: cover;">
+        <div class="containeer" style="width: 700px;">
+            <h2>Gardening Tutorials 🌱</h2>
+            <label for="tutorialSelect">Choose a Tutorial:</label>
+            <select id="tutorialSelect" onchange="showTutorial()">
+                <option value="">--Select a Tutorial--</option>
+                <option value="basic">Gardening Basics</option>
+                <option value="indoor">Indoor Plant Care</option>
+                <option value="vegetable">Growing Vegetables at Home</option>
+                <option value="compost">How to Make Compost</option>
+            </select>
+
+            <div id="videoSection" class="video-container"></div>
+        </div>
+    </div>
+    <script>
+        const tutorialVideos = {
+            basic: "https://www.youtube.com/embed/BO8yuSTc3fo",
+            indoor: "https://www.youtube.com/embed/LZhnCxG5c6s",
+            vegetable: "https://www.youtube.com/embed/ATI7vfCgwXE",
+            compost: "https://www.youtube.com/embed/iukbMVXIYKA"
+        };
+
+        function showTutorial() {
+            const selectedTutorial = document.getElementById("tutorialSelect").value;
+            const videoSection = document.getElementById("videoSection");
+
+            if (selectedTutorial) {
+                videoSection.innerHTML = `
+                <h3>${selectedTutorial.charAt(0).toUpperCase() + selectedTutorial.slice(1)} Tutorial</h3>
+                <iframe src="${tutorialVideos[selectedTutorial]}" allowfullscreen></iframe>
+            `;
+            } else {
+                videoSection.innerHTML = "";
+            }
+        }
+    </script>
+
+    <script>
+        //recomm
+        const plantsData = [
+            { name: "Cactus", sunlight: "full_sun", humidity: "low", soil: "sandy", temperature: "warm", ph: "acidic" },
+            { name: "Bamboo", sunlight: "low_light", humidity: "moderate", soil: "loamy", temperature: "moderate", ph: "acidic" },
+            { name: "ficus bonsai plant", sunlight: "full_sun", humidity: "high", soil: "loamy", temperature: "moderate", ph: "acidic" },
+            { name: "Peacock plant", sunlight: "partial_shade", humidity: "high", soil: "loamy", temperature: "warm", ph: "acidic" },
+            { name: "Aloe Vera", sunlight: "full_sun", humidity: "low", soil: "sandy", temperature: "warm", ph: "Neutral" },
+            { name: "Lily", sunlight: "low_light", humidity: "high", soil: "loamy", temperature: "moderate", ph: "Neutral" },
+            { name: "Marigold", sunlight: "full_sun", humidity: "moderate", soil: "sandy", temperature: "warm", ph: "Neutral" },
+            { name: "Snake Plant", sunlight: "low_light", humidity: "low", soil: "loamy", temperature: "moderate", ph: "acidic" },
+            { name: "Money Plant", sunlight: "low_light", humidity: "high", soil: "well-drained", temperature: "warm", ph: "acidic" },
+            { name: "Monstera Deliciosa", sunlight: "partial_shade", humidity: "moderate", soil: "loamy", temperature: "warm", ph: "acidic" },
+            { name: "Periwinkle ", sunlight: "full_sun", humidity: "moderate", soil: "well-drained", temperature: "warm", ph: "acidic" },
+            { name: "Pink Rose", sunlight: "full_sun", humidity: "moderate", soil: "loamy", temperature: "moderate", ph: "acidic" },
+            { name: "Pink Hibiscus", sunlight: "full_sun", humidity: "high", soil: "loamy", temperature: "moderate", ph: "Alkaline" },
+            { name: "Pink Bouganvilla", sunlight: "full_sun", humidity: "high", soil: "sandy", temperature: "moderate", ph: "acidic" },
+            { name: "Jasmine", sunlight: "partial", humidity: "high", soil: "loamy", temperature: "moderate", ph: "Alkaline" },
+            { name: "Champa", sunlight: "full_sun", humidity: "moderate", soil: "sandy", temperature: "moderate", ph: "Alkaline" },
+        ];
+
+        function recommendPlants() {
+            const sunlight = document.getElementById("sunlight").value;
+            const humidity = document.getElementById("humidity").value;
+            const soil = document.getElementById("soil").value;
+            const temperature = document.getElementById("temperature").value;
+
+            const recommendations = plantsData.filter(plant =>
+                plant.sunlight === sunlight &&
+                plant.humidity === humidity &&
+                plant.soil === soil &&
+                plant.temperature === temperature
+            );
+
+            displayRecommendations(recommendations);
+        }
+
+        function displayRecommendations(recommendations) {
+            const container = document.getElementById("recommendations");
+            container.innerHTML = ""; // Clear previous results
+
+            if (recommendations.length === 0) {
+                container.innerHTML = "<li>No matching plants found. Try different selections.</li>";
+                return;
+            }
+
+            recommendations.forEach(plant => {
+                const listItem = document.createElement("li");
+                listItem.textContent = plant.name;
+                container.appendChild(listItem);
+            });
+        }
+        //chatbot
+        const API_KEY = 'AIzaSyAQ8kabNUGeaAuTWMNN6M2cyuET1sEboD4';
+        // Replace with your actual Gemini API key – this stores the API key to authenticate requests to the Gemini API.
+
+        const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent';
+        // The base URL of the Gemini API used to generate content (for text-based responses).
+
+        const chatMessages = document.getElementById('chat-messages');
+        // Gets the DOM element with the ID 'chat-messages', where the chat messages (user and bot) will be displayed.
+
+        const userInput = document.getElementById('user-input');
+        // Gets the DOM element with the ID 'user-input', which is the input field where the user types their message.
+
+        const sendButton = document.getElementById('send-button');
+        // Gets the DOM element with the ID 'send-button', which is the button the user clicks to send their message.
+
+        async function generateResponse(prompt) {
+            // Defines an asynchronous function `generateResponse` that takes the user's input (prompt) and generates a response from the API.
+
+            const response = await fetch(`${API_URL}?key=${API_KEY}`, {
+                // Sends a POST request to the Gemini API endpoint with the API key appended to the URL.
+                method: 'POST',
+                // Specifies the HTTP method (POST) to send data to the API.
+
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                // Sets the request headers to indicate that the content being sent is in JSON format.
+
+                body: JSON.stringify({
+                    // The body of the request, converting the user's message into the format required by the API.
+                    contents: [
+                        {
+                            parts: [
+                                {
+                                    text: prompt
+                                    // The user's input (`prompt`) is inserted into the request payload.
+                                }
+                            ]
+                        }
+                    ]
+                })
+            });
+
+            if (!response.ok) {
+                // Checks if the API request was unsuccessful (i.e., the response is not OK).
+                throw new Error('Failed to generate response');
+                // If there's an error, an exception is thrown with an error message.
+            }
+
+            const data = await response.json();
+            // Converts the API response to JSON format.
+
+            return data.candidates[0].content.parts[0].text;
+            // Returns the first generated response from the API (the text part of the response).
+        }
+
+        function cleanMarkdown(text) {
+            // Defines a function `cleanMarkdown` to remove any Markdown formatting (like headers, bold text, etc.) from the response.
+            return text
+                .replace(/#{1,6}\s?/g, '')
+                // Removes any Markdown headers (e.g., #, ##, ###).
+
+                .replace(/\*\*/g, '')
+                // Removes bold formatting (double asterisks **).
+
+                .replace(/\n{3,}/g, '\n\n')
+                // Limits excessive newlines to a maximum of two (replaces more than two newlines with two).
+
+                .trim();
+            // Removes any whitespace from the start and end of the string.
+        }
+
+        function addMessage(message, isUser) {
+            // Defines a function `addMessage` to add a new message to the chat display. It takes the `message` (text) and `isUser` (boolean indicating whether the message is from the user or the bot).
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+            // Creates a new `div` element for the message and adds the 'message' CSS class.
+
+            messageElement.classList.add(isUser ? 'user-message' : 'bot-message');
+            // Adds a class based on whether the message is from the user ('user-message') or the bot ('bot-message').
+            const profileImage = document.createElement('img');
+            profileImage.classList.add('profile-image');
+            // Creates an image element for the profile picture (either the user or the bot) and adds the 'profile-image' CSS class.
+
+            profileImage.src = isUser ? 'user.png' : 'bot.png';
+            // Sets the image source depending on whether it's a user or bot message ('user.jpg' or 'bot.jpg').
+
+            profileImage.alt = isUser ? 'User' : 'Bot';
+            // Sets the alternate text for the image (for accessibility), either 'User' or 'Bot'.
+
+            const messageContent = document.createElement('div');
+            messageContent.classList.add('message-content');
+            // Creates a `div` element to hold the text content of the message and adds the 'message-content' CSS class.
+
+            messageContent.textContent = message;
+            // Sets the text content of the message.
+
+            messageElement.appendChild(profileImage);
+            messageElement.appendChild(messageContent);
+            // Appends the profile image and message content to the message element.
+
+            chatMessages.appendChild(messageElement);
+            // Appends the complete message (with profile image and text) to the chat messages section.
+
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            // Scrolls the chat to the bottom to ensure the latest message is visible.
+        }
+
+        async function handleUserInput() {
+            // Defines an asynchronous function `handleUserInput` to process and handle the user’s input.
+            const userMessage = userInput.value.trim();
+            // Retrieves the user input from the input field and trims any leading/trailing whitespace.
+
+            if (userMessage) {
+                // If the user has entered a message (i.e., it's not empty):
+                addMessage(userMessage, true);
+                // Adds the user's message to the chat (as a user message).
+
+                userInput.value = '';
+                // Clears the input field.
+
+                sendButton.disabled = true;
+                userInput.disabled = true;
+                // Disables the send button and the input field to prevent multiple messages being sent while the bot responds.
+
+                try {
+                    const botMessage = await generateResponse(userMessage);
+                    // Calls the `generateResponse` function to get the bot's reply.
+
+                    addMessage(cleanMarkdown(botMessage), false);
+                    // Adds the bot's cleaned response to the chat.
+                } catch (error) {
+                    console.error('Error:', error);
+                    // Logs any error that occurs during the bot response.
+
+                    addMessage('Sorry, I encountered an error. Please try again.', false);
+                    // Displays an error message in the chat if something goes wrong.
+                } finally {
+                    sendButton.disabled = false;
+                    userInput.disabled = false;
+                    userInput.focus();
+                    // Re-enables the send button and the input field, and puts the focus back on the input for further user interaction.
+                }
+            }
+        }
+
+        sendButton.addEventListener('click', handleUserInput);
+        // Adds an event listener to the send button that calls `handleUserInput` when clicked.
+
+        userInput.addEventListener('keypress', (e) => {
+            // Adds an event listener for when a key is pressed in the input field.
+            if (e.key === 'Enter' && !e.shiftKey) {
+                // Checks if the 'Enter' key is pressed and Shift is not held (to distinguish from Shift+Enter for newlines).
+                e.preventDefault();
+                // Prevents the default behavior of adding a newline.
+
+                handleUserInput();
+                // Calls `handleUserInput` to send the message.
+            }
+        });
+        //send msg
+        document.querySelector("form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const formData = {
+                name: document.querySelector('input[placeholder="Your Name"]').value,
+                email: document.querySelector('input[placeholder="Your Email"]').value,
+                message: document.querySelector('textarea').value,
+            };
+
+            const response = await fetch("http://localhost:5000/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
+
+            const result = await response.json();
+            alert(result.message);
+        });
+
+    </script>
+
+
+    </section>
+    <!--bee-->
+    <div class="garden-buddy" onclick="showTip()">
+        <img src="images/—Pngtree—cartoon clipart cute vector insect_5528299.png" alt="Garden Buddy" />
+        <div id="buddy-tip" class="buddy-tip hidden">🌱 Drink water, like your plants!</div>
+    </div>
+    <style>
+        .garden-buddy {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            cursor: pointer;
+            animation: floaty 3s ease-in-out infinite;
+            z-index: 1000;
+        }
+
+        .garden-buddy img {
+            width: 90px;
+            transition: transform 0.3s ease;
+        }
+
+        .garden-buddy:hover img {
+            transform: rotate(5deg) scale(1.05);
+        }
+
+        .buddy-tip {
+            position: absolute;
+            bottom: 110%;
+            right: 0;
+            background-color: #ffffffcc;
+            color: #2f3e46;
+            padding: 10px 15px;
+            border-radius: 15px;
+            border: 2px solid #a7e0a5;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            white-space: nowrap;
+            font-size: 0.9rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        @keyframes floaty {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+    <script>
+        const tips = [
+            "🌱 Drink water, like your plants!",
+            "☀️ Sunlight makes everything better!",
+            "🪴 Talk to your plants — they love it!",
+            "🌼 Take time to bloom!",
+            "🧤 Don’t forget to repot sometimes!",
+            "🐝 Bees love wildflowers!",
+        ];
+
+        function showTip() {
+            const tipBox = document.getElementById("buddy-tip");
+            const randomTip = tips[Math.floor(Math.random() * tips.length)];
+            tipBox.textContent = randomTip;
+
+            tipBox.classList.remove("hidden");
+            setTimeout(() => {
+                tipBox.classList.add("hidden");
+            }, 3000);
+        }
+
+    </script>
+</body>
+
+</html>

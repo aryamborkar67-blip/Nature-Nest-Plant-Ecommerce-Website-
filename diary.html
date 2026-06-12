@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diary</title>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="conttainer">
+            <a class="" href="index.html">NatureNest</a>
+        </div>
+    </nav>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .navbar {
+            background: linear-gradient(to right, #054215, #8dea61);
+            color: white;
+            padding: 15px;
+        }
+
+        .navbar a {
+            color: rgb(221, 230, 226);
+            text-decoration: none;
+            padding: 10px;
+        }
+
+        .navbar a.active {
+            background-color: #555;
+        }
+    </style>
+    <h2>🌿 Garden Journal</h2>
+
+    <div class="journal-container">
+        <textarea id="entry" placeholder="What happened in your garden today? 🌱"></textarea>
+        <div class="journal-controls">
+            <select id="mood">
+                <option value="😊">😊 Happy</option>
+                <option value="😓">😓 Tired</option>
+                <option value="🌧️">🌧️ Rainy</option>
+                <option value="☀️">☀️ Sunny</option>
+                <option value="🌈">🌈 Peaceful</option>
+            </select>
+            <button onclick="saveEntry()">📥 Save Entry</button>
+        </div>
+        <ul id="journal-entries"></ul>
+    </div>
+    <!-- Confirmation Modal -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <p>Are you sure you want to pluck this thought from your garden? 🌸</p>
+            <div class="modal-buttons">
+                <button id="confirmDeleteBtn">🌼 Yes, pluck it</button>
+                <button onclick="closeModal()">🌿 No, keep it growing</button>
+            </div>
+        </div>
+    </div>
+    
+
+
+    <style>
+        h2 {
+            text-align: center;
+            color: #558b2f;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .journal-container {
+            max-width: 650px;
+            margin: auto;
+            padding: 2rem;
+            background: #ffffffd9;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border: 2px dashed #c5e1a5;
+            position: relative;
+            transition: 0.3s ease;
+        }
+
+        .journal-container {
+            background: #fff;
+            background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+            background-repeat: repeat;
+            background-size: contain;
+
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 6px 8px 20px rgba(0, 0, 0, 0.15);
+            border: 1px solid #e0e0e0;
+            max-width: 650px;
+            margin: auto;
+            position: relative;
+            transition: transform 0.2s;
+        }
+
+
+
+        .journal-container:hover {
+            box-shadow: 10px 14px 25px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+        }
+
+
+
+
+        button.save-sparkle {
+            background: linear-gradient(to right, #81c784, #66bb6a);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button.save-sparkle::after {
+            content: "✨";
+            position: absolute;
+            top: -10px;
+            left: -30px;
+            font-size: 1.5rem;
+            animation: sparkleMove 1s infinite linear;
+            opacity: 0.6;
+        }
+
+        @keyframes sparkleMove {
+            0% {
+                transform: translateX(0);
+                opacity: 0.3;
+            }
+
+            50% {
+                transform: translateX(150px);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateX(300px);
+                opacity: 0;
+            }
+        }
+
+        textarea {
+            width: 100%;
+            height: 140px;
+            padding: 1rem;
+            font-size: 1rem;
+            font-family: 'Courier New', monospace;
+            border: 2px solid #aed581;
+            border-radius: 12px;
+            background-color: #f1f8e9;
+            resize: none;
+            transition: box-shadow 0.3s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            box-shadow: 0 0 8px #81c784;
+        }
+
+        .journal-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            gap: 1rem;
+        }
+
+        select,
+        button {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        select {
+            background-color: #dcedc8;
+            color: #33691e;
+        }
+
+        button {
+            background: linear-gradient(to right, #81c784, #66bb6a);
+            color: white;
+            transition: 0.3s;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #66bb6a, #43a047);
+            transform: scale(1.05);
+        }
+
+        #journal-entries {
+            list-style: none;
+            padding: 0;
+            margin-top: 2rem;
+        }
+
+        #journal-entries li {
+            background: #fafafa;
+            border-left: 5px solid #81c784;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: 0.3s;
+        }
+
+        #journal-entries li:hover {
+            transform: translateY(-3px);
+            background: #f0f4c3;
+        }
+
+        #journal-entries li small {
+            display: block;
+            color: #666;
+            margin-top: 0.5rem;
+            font-style: italic;
+            font-size: 0.85rem;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delete-btn {
+            background-color: #ffccbc;
+            color: #fafafa;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-top: 8px;
+            float: right;
+            transition: 0.2s ease;
+        }
+
+        .delete-btn:hover {
+            background-color: #ffab91;
+            transform: scale(1.05);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(3px);
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: #f9fbe7;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            animation: slideUp 0.4s ease;
+        }
+
+        .modal-buttons button {
+            margin: 0.5rem;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .modal-buttons button:first-child {
+            background: #ffccbc;
+            color: #c62828;
+        }
+
+        .modal-buttons button:first-child:hover {
+            background: #ffab91;
+        }
+
+        .modal-buttons button:last-child {
+            background: #c8e6c9;
+            color: #2e7d32;
+        }
+
+        .modal-buttons button:last-child:hover {
+            background: #a5d6a7;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        
+    </style>
+    <script>
+        function saveEntry() {
+            const entryText = document.getElementById("entry").value.trim();
+            const mood = document.getElementById("mood").value;
+            if (!entryText) return;
+
+            const date = new Date().toLocaleString();
+            const entry = {
+                text: entryText,
+                mood,
+                date
+            };
+
+            // Save to localStorage
+            let entries = JSON.parse(localStorage.getItem("gardenJournal")) || [];
+            entries.unshift(entry);
+            localStorage.setItem("gardenJournal", JSON.stringify(entries));
+
+            document.getElementById("entry").value = "";
+            displayEntries();
+        }
+
+        function displayEntries() {
+            const entries = JSON.parse(localStorage.getItem("gardenJournal")) || [];
+            const list = document.getElementById("journal-entries");
+            list.innerHTML = "";
+
+            entries.forEach(entry => {
+                const li = document.createElement("li");
+                li.innerHTML = `${entry.mood} ${entry.text}<small>${entry.date}</small>`;
+                list.appendChild(li);
+            });
+        }
+
+        // Load entries on page load
+        window.onload = displayEntries;
+        function displayEntries() {
+            const entries = JSON.parse(localStorage.getItem("gardenJournal")) || [];
+            const list = document.getElementById("journal-entries");
+            list.innerHTML = "";
+
+            entries.forEach((entry, index) => {
+                const li = document.createElement("li");
+
+                li.innerHTML = `
+      ${entry.mood} ${entry.text}
+      <small>${entry.date}</small>
+      <button class="delete-btn" onclick="deleteEntry(${index})">🗑️ Delete</button>
+    `;
+
+                list.appendChild(li);
+            });
+        }
+        let deleteIndexToConfirm = null;
+
+        function deleteEntry(index) {
+            deleteIndexToConfirm = index;
+            document.getElementById("deleteModal").style.display = "flex";
+        }
+
+        document.getElementById("confirmDeleteBtn").onclick = function () {
+            if (deleteIndexToConfirm !== null) {
+                let entries = JSON.parse(localStorage.getItem("gardenJournal")) || [];
+                entries.splice(deleteIndexToConfirm, 1);
+                localStorage.setItem("gardenJournal", JSON.stringify(entries));
+                displayEntries();
+                closeModal();
+            }
+        };
+
+        function closeModal() {
+            document.getElementById("deleteModal").style.display = "none";
+            deleteIndexToConfirm = null;
+        }
+
+        
+        
+
+    </script>
+</body>
+
+</html>

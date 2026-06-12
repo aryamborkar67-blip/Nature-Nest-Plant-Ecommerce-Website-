@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help-GreenHouse</title>
+
+
+
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a class="" href="index.html">NatureNest</a>
+            <a href="guide.html">Guide</a>
+            <a href="help.html" class="active">Help</a>
+
+
+        </div>
+    </nav>
+    <br>
+    <br>
+    <!--faq-->
+    <h2 style="text-align: center; font-size: 1.5rem;">If you have any questions or need assistance, please check our
+        FAQs below or contact our support team.</h2>
+    <br>
+
+    <section class="faq-section">
+        <h2>🌼 Frequently Asked Questions</h2>
+        <div class="faq-container">
+
+            <div class="faq-item">
+                <input type="checkbox" id="faq1">
+                <label for="faq1" class="faq-question">What types of plants do you offer?</label>
+                <div class="faq-answer">
+                    <p>We offer a wide variety of plants including indoor plants, outdoor plants, flowering plants,
+                        succulents, herbs, and seasonal plants. You can browse by category or use our plant finder tool
+                        for recommendations.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <input type="checkbox" id="faq2">
+                <label for="faq2" class="faq-question">What plants are best for beginners?</label>
+                <div class="faq-answer">
+                    <p>Succulents, snake plants, and pothos are great for beginners as they require minimal care and
+                        thrive in various conditions.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <input type="checkbox" id="faq4">
+                <label for="faq4" class="faq-question"> What’s your return policy?</label>
+                <div class="faq-answer">
+                    <p>If your plant arrives damaged or unhealthy, contact us within 7 days of delivery with a photo,
+                        and we’ll offer a replacement or refund. Please note that we do not accept returns for healthy
+                        plants once delivered.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <input type="checkbox" id="faq4">
+                <label for="faq4" class="faq-question"> Can I consult a gardening expert?</label>
+                <div class="faq-answer">
+                    <p>Yes! We offer virtual plant chatbot in our
+                    <div style="font-weight: 600;">GUIDE SECTION</div> to whom you can ask your queires and doubts and
+                    you can absolutely get instant responses to it</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <input type="checkbox" id="faq3">
+                <label for="faq3" class="faq-question">How do I prevent pests in my garden?</label>
+                <div class="faq-answer">
+                    <p>Use neem oil or natural repellents. Keep the garden clean, and remove any infested plants
+                        promptly.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <input type="checkbox" id="faq4">
+                <label for="faq4" class="faq-question">How do I know which plant is right for my space?</label>
+                <div class="faq-answer">
+                    <p>You can use our Plant Recommendation Tool by answering a few questions about your space—like
+                        lighting, size, and temperature—and we’ll recommend the best options.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background: linear-gradient(to right, #054215, #8dea61);
+            color: white;
+            padding: 15px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+        }
+
+        .navbar a.active {
+            background-color: #555;
+        }
+
+        .faq-section {
+
+            background-color: #f0fff4;
+
+            max-width: 800px;
+            margin: 0 auto;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            font-size: 32px;
+            color: #2f6627;
+            margin-bottom: 40px;
+        }
+
+        .faq-container {
+            margin: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 2rem;
+        }
+
+        .faq-item {
+            border: 1px solid #cfe9cf;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item input {
+            display: none;
+        }
+
+        .faq-question {
+            display: block;
+            padding: 16px 20px;
+            font-weight: 600;
+            color: #2e7d32;
+            cursor: pointer;
+            position: relative;
+            background-color: #e6f5e6;
+        }
+
+        .faq-question::after {
+            content: "+";
+            position: absolute;
+            right: 20px;
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item input:checked+.faq-question::after {
+            content: "–";
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 20px;
+            background: #f9fff7;
+            color: #444;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item input:checked~.faq-answer {
+            max-height: 200px;
+            padding: 16px 20px;
+        }
+    </style>
+
+
+    <script>
+        document.querySelectorAll('.faq h3').forEach((faq) => {
+            faq.addEventListener('click', () => {
+                const answer = faq.nextElementSibling;
+                answer.style.display = answer.style.display === 'none' || answer.style.display === '' ? 'block' : 'none';
+            });
+        });
+    </script>
+    <!-- Floating Button -->
+    <button id="openMessageBox" class="floating-btn">
+        💬 Message Us
+    </button>
+
+    <!-- Modal Background -->
+    <div id="messageModal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h2>🌱If You Have Any Query, Please Contact Us</h2>
+                <button id="closeMessageBox" class="close-btn">&times;</button>
+            </div>
+            <form class="modal-form" id="contactForm">
+                <label>
+                    Name
+                    <input type="text" name="name" placeholder="Your name" required>
+                </label>
+
+                <label>
+                    Email
+                    <input type="email" name="email" placeholder="you@example.com" required>
+                </label>
+
+                <label>
+                    Message
+                    <textarea name="message" rows="4" placeholder="What's on your mind?" required></textarea>
+                </label>
+
+                <button type="submit" class="submit-btn">✉️ Send Message</button>
+            </form>
+
+            <!-- Success Message -->
+            <!-- Success Message -->
+            <div id="successMessage" class="success-message">
+                <div class="checkmark">&#10003;</div>
+                <p>Thanks! Your message has been sent 🌿</p>
+            </div>
+
+
+        </div>
+    </div>
+
+    <!-- Styles -->
+    <style>
+        /* Success Message */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            animation: fadeSlideIn 0.5s ease;
+        }
+
+        .success-message .checkmark {
+            font-size: 48px;
+            color: #2e7d32;
+            margin-bottom: 10px;
+            animation: pop 0.5s ease;
+        }
+
+        @keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pop {
+            0% {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+        }
+
+
+        /* Floating Button */
+        .floating-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #2e7d32;
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s ease, transform 0.2s ease;
+            z-index: 1000;
+        }
+
+        .floating-btn:hover {
+            background-color: #1b5e20;
+            transform: scale(1.05);
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.4);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        /* Modal Box */
+        .modal-box {
+            background-color: #fefefe;
+            margin-top: 10rem;
+            padding: 25px 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 450px;
+            width: 90%;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                transform: scale(0.95);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Modal Header */
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            color: #2e7d32;
+            font-size: 22px;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: #555;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .close-btn:hover {
+            color: #c62828;
+        }
+
+        /* Form */
+        .modal-form label {
+            display: block;
+            margin-bottom: 15px;
+            color: #444;
+            font-weight: 500;
+        }
+
+        .modal-form input,
+        .modal-form textarea {
+            width: 100%;
+            padding: 10px 14px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: border-color 0.2s ease;
+        }
+
+        .modal-form input:focus,
+        .modal-form textarea:focus {
+            border-color: #66bb6a;
+            outline: none;
+        }
+
+        .submit-btn {
+            display: inline-block;
+            background-color: #2e7d32;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 15px;
+            margin-top: 10px;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #1b5e20;
+        }
+    </style>
+
+    <!-- JavaScript -->
+    <script>
+        const openBtn = document.getElementById('openMessageBox');
+        const closeBtn = document.getElementById('closeMessageBox');
+        const modal = document.getElementById('messageModal');
+
+        openBtn.addEventListener('click', () => {
+            modal.classList.add('show');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.classList.remove('show');
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('show');
+            }
+        });
+        const form = document.querySelector('.modal-form');
+        const successBox = document.getElementById('successMessage');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault(); // prevent actual form submission
+
+            // Optionally: send data to backend here using fetch()
+
+            // Hide form and show success message
+            form.style.display = 'none';
+            successBox.style.display = 'block';
+
+            // Auto-close modal after 3 seconds
+            setTimeout(() => {
+                modal.classList.remove('show');
+                successBox.style.display = 'none';
+                form.reset();
+                form.style.display = 'block';
+            }, 3000);
+        });
+
+    </script>
+    <!--bee-->
+    <div class="garden-buddy" onclick="showTip()">
+        <img src="images/—Pngtree—cartoon clipart cute vector insect_5528299.png" alt="Garden Buddy" />
+        <div id="buddy-tip" class="buddy-tip hidden">🌱 Drink water, like your plants!</div>
+    </div>
+    <style>
+        .garden-buddy {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            cursor: pointer;
+            animation: floaty 3s ease-in-out infinite;
+            z-index: 1000;
+        }
+
+        .garden-buddy img {
+            width: 90px;
+            transition: transform 0.3s ease;
+        }
+
+        .garden-buddy:hover img {
+            transform: rotate(5deg) scale(1.05);
+        }
+
+        .buddy-tip {
+            position: absolute;
+            bottom: 110%;
+            right: 0;
+            background-color: #ffffffcc;
+            color: #2f3e46;
+            padding: 10px 15px;
+            border-radius: 15px;
+            border: 2px solid #a7e0a5;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            white-space: nowrap;
+            font-size: 0.9rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        @keyframes floaty {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+    <script>
+        const tips = [
+            "🌱 Drink water, like your plants!",
+            "☀️ Sunlight makes everything better!",
+            "🪴 Talk to your plants — they love it!",
+            "🌼 Take time to bloom!",
+            "🧤 Don’t forget to repot sometimes!",
+            "🐝 Bees love wildflowers!",
+        ];
+
+        function showTip() {
+            const tipBox = document.getElementById("buddy-tip");
+            const randomTip = tips[Math.floor(Math.random() * tips.length)];
+            tipBox.textContent = randomTip;
+
+            tipBox.classList.remove("hidden");
+            setTimeout(() => {
+                tipBox.classList.add("hidden");
+            }, 3000);
+        }
+
+    </script>
+</body>
+
+</html>

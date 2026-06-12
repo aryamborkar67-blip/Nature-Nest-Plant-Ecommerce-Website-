@@ -1,0 +1,2331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nature Nest</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0&icon_names=keyboard_arrow_down" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js">
+    </script>
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+
+    <header class="header">
+        <a href="#" class="logo"><i class="fa-solid fa-leaf"></i>Nature Nest</a>
+        <div class="mode">
+            <i class="ri-moon-line change-theme" id="theme-button"></i>
+            <span class="change">OFF</span>
+        </div>
+        <div class="navbar">
+            <a href="#home" class="active">Home</a>
+            <a href="guide.html">Guide</a>
+            <a href="#available">Shopping</a>
+            <a href="#test">Testimonials</a>
+            <a href="#login">Login</a>
+            <a href="help.html">Help</a>
+
+
+        </div>
+        <i class="fa-solid fa-bag-shopping" id="cart-icon" data-quantity="0" onMouseOver="this.style.color='black'"
+            onMouseOut="this.style.color='white'"></i>
+        <!--Navbar end-->
+        <div class="cart">
+            <h2 class="cart-title">Your Cart</h2>
+            <div class="cart-content">
+                <div class="cart-box">
+                    <div class="class-image"></div>
+                    <div class="detail-box">
+                        <div class="cart-product-title"></div>
+                        <div class="cart-price"></div>
+                        <div class="cart-quantity"></div>
+                        <input type="" name="" id="" value="" class="cart-quantity" />
+                    </div>
+                    <!--Remove Item-->
+                    <i class="fa-solid fa-trash cart-remove"></i> <!-- Trash icon -->
+                </div>
+            </div>
+            <div class="total">
+                <div class="total-title">Total</div>
+                <div class="total-price">$0</div>
+            </div>
+            <!--Buy Button-->
+            <button type="button" class="btn-buy" style="font-size: 1.3rem;">Pay Now</button>
+            <!--Close cart-->
+            <i class="fa-solid fa-xmark" id="close-cart"></i> <!-- Close (×) icon -->
+        </div>
+    </header>
+    <!--bee-->
+    <div class="garden-buddy" onclick="showTip()">
+        <img src="images/—Pngtree—cartoon clipart cute vector insect_5528299.png" alt="Garden Buddy" />
+        <div id="buddy-tip" class="buddy-tip hidden">🌱 Drink water, like your plants!</div>
+    </div>
+    <style>
+        .garden-buddy {
+            position: fixed;
+            bottom: 70px;
+            right: 30px;
+            cursor: pointer;
+            animation: floaty 3s ease-in-out infinite;
+            z-index: 1000;
+        }
+
+        .garden-buddy img {
+            width: 100px;
+            height: 100px;
+            transition: transform 0.3s ease;
+        }
+
+        .garden-buddy:hover img {
+            transform: rotate(5deg) scale(1.05);
+        }
+
+        .buddy-tip {
+            position: absolute;
+            bottom: 110%;
+            right: 0;
+            background-color: #ffffffcc;
+            color: #2f3e46;
+            padding: 10px 15px;
+            border-radius: 15px;
+            border: 2px solid #a7e0a5;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            white-space: nowrap;
+            font-size: 0.9rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        @keyframes floaty {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+    <script>
+        const tips = [
+            "🌱 Drink water, like your plants!",
+            "☀️ Sunlight makes everything better!",
+            "🪴 Talk to your plants — they love it!",
+            "🌼 Take time to bloom!",
+            "🧤 Don’t forget to repot sometimes!",
+            "🐝 Bees love wildflowers!",
+        ];
+
+        function showTip() {
+            const tipBox = document.getElementById("buddy-tip");
+            const randomTip = tips[Math.floor(Math.random() * tips.length)];
+            tipBox.textContent = randomTip;
+
+            tipBox.classList.remove("hidden");
+            setTimeout(() => {
+                tipBox.classList.add("hidden");
+            }, 3000);
+        }
+
+    </script>
+
+
+    <!--Home-->
+    <section class="home" id="home">
+        <div class="swiper home-slider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="box"
+                        style="background: url('./images/nn1\ \(1\).png'); background-size:contain; background-position: center; height: 40px;">
+                        <div class="content">
+                            <a href="#available" class="btn" style="display: inline-block;
+                            margin-top: 40rem;
+                            margin-right: 35rem;
+                            padding: .9rem 2rem;
+                            background-color: #1cc34c;
+                            color: #f8fbf9;
+                            font-size: 1.7rem;
+                            border-radius: 2px;" onMouseOver="this.style.color='green'"
+                                onMouseOut="this.style.color='green'">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="box"
+                        style="background: url('./images/nn1\ \(2\).png'); background-size: cover; background-position: center; height: 400px;">
+                        <div class="content">
+
+                            <a href="#available" class="btn" style="display: inline-block;
+                            margin-top: 40rem;
+                            margin-right: 35rem;
+                            padding: .9rem 2rem;
+                            background-color: #1cc34c;
+                            color: #f8fbf9;
+                            font-size: 1.7rem;
+                            border-radius: 2px;" onMouseOver="this.style.color='green'"
+                                onMouseOut="this.style.color='green'">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="box"
+                        style="background: url('./images/nn1\ \(3\).png'); background-size: cover; background-position: center; height: 400px;">
+                        <div class="content">
+
+                            <a href="#available" class="btn" style="display: inline-block;
+                            margin-top: 40rem;
+                            margin-right: 35rem;
+                            padding: .9rem 2rem;
+                            background-color: #1cc34c;
+                            color: #f8fbf9;
+                            font-size: 1.7rem;
+                            border-radius: 2px;" onMouseOver="this.style.color='green'"
+                                onMouseOut="this.style.color='green'">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="box"
+                        style="background: url('./images/nn1\ \(4\).png'); background-size: cover; background-position: center; height: 400px;">
+                        <div class="content">
+
+                            <a href="#available" class="btn" style="display: inline-block;
+                            margin-top: 40rem;
+                            margin-right: 35rem;
+                            padding: .9rem 2rem;
+                            background-color: #1cc34c;
+                            color: #f8fbf9;
+                            font-size: 1.7rem;
+                            border-radius: 2px;" onMouseOver="this.style.color='green'"
+                                onMouseOut="this.style.color='green'">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Add Swiper pagination if needed -->
+            <div class="swiper-pagination"></div>
+        </div>
+
+    </section>
+    <!--Home End-->
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+    <!--About-->
+    <section class="about us" id="">
+        <div class="vessel">
+            <div class="info">
+                <div class="title">
+                    <h1>ABOUT US</h1>
+                </div>
+                <br>
+                <div class="content">
+                    <h3>Welcome to Nature Nest, your go-to online destination for beautiful, healthy plants and
+                        gardening essentials! <br> We are dedicated to helping you create greener spaces—whether it's
+                        your home, office, or garden.</h3>
+                    <br>
+                    <p>Born out of a love for nature, Nature Nest was founded with a simple goal: to make plant shopping
+                        easy, accessible, and enjoyable for everyone. We understand the joy that plants bring and the
+                        positive impact they have on well-being, so we set out to create an online store that delivers
+                        nature to your doorstep
+
+                    </p>
+                    <div class="button">
+                        <a href="">Read More</a>
+                    </div>
+
+                </div>
+                <div class="image-section">
+                    <img src="images/w4.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--About End-->
+    <!--Our best-->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #f4f4f4;
+        }
+
+        .sell-section {
+            max-width: 1200px;
+            margin: 50px auto;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .sell-section h2 {
+            font-size: 2.5rem;
+            color: #0c4a0d;
+            margin-bottom: 20px;
+        }
+
+        .sell-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .sell-item {
+            background: rgb(222, 248, 221);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .sell-item:hover {
+            transform: scale(1.05);
+        }
+
+        .sell-item img {
+            width: 90%;
+            height: 220px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .sell-item h3 {
+            margin: 10px 0;
+            font-size: 1.5rem;
+            color: #2c3e50;
+        }
+
+        .explore-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #155824;
+            color: rgb(247, 240, 240);
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .explore-btn:hover {
+            background: #1cc34c;
+            transform: scale(1.1);
+        }
+    </style>
+    </head>
+
+    <body>
+
+        <section class="sell-section">
+            <h2>🌱 Nature Nest Offers🌱</h2>
+            <div class="sell-container">
+                <div class="sell-item">
+                    <img src="images/vecteezy_watercolor-painted-houseplant_11904799.png" alt="Indoor Plants">
+                    <h3>Indoor Plants</h3>
+                    <a href="#available" class="explore-btn">Explore</a>
+                </div>
+
+                <div class="sell-item">
+                    <img src="images/vecteezy_ai-generated-rose-flowers-bouquet-on-pot-isolated_36296254.png"
+                        alt="Flowering Plants">
+                    <h3>Flowering Plants</h3>
+                    <a href="#flower" class="explore-btn">Explore</a>
+                </div>
+
+                <div class="sell-item">
+                    <img src="images/vecteezy_seeds-in-a-wooden-bowl-isolated-on-a-transparent-background_47920947.png"
+                        alt="Seeds">
+                    <h3>Seeds</h3>
+                    <a href="#seeds" class="explore-btn">Explore</a>
+                </div>
+
+                <div class="sell-item">
+                    <img src="images/vecteezy_ai-generated-soil-stained-gardening-gloves-paired-with_42055943.png"
+                        alt="Garden Tools">
+                    <h3>Garden Tools</h3>
+                    <a href="#tools" class="explore-btn">Explore</a>
+                </div>
+                <div class="sell-item">
+                    <img src="images/vecteezy_cute-red-blooms-on-potted-cactus_46456107.png" alt="Some Fun">
+                    <h3>Game Zone</h3>
+                    <a href="game.html" class="explore-btn">Explore</a>
+                </div>
+                <div class="sell-item">
+                    <img src="images/vecteezy_eco-friendly-urban-design-isolated-with-green-accents_57562941.png"
+                        alt="Some Fun">
+                    <h3>Community</h3>
+                    <a href="green.html" class="explore-btn">Explore</a>
+                </div>
+                <div class="sell-item">
+                    <img src="images/vecteezy_wonderful-creative-urban-farm-worker-tending-to-plants_57721774.png"
+                        alt="Some Fun">
+                    <h3>Challenges</h3>
+                    <a href="comp.html" class="explore-btn">Explore</a>
+                </div>
+                <div class="sell-item">
+                    <img src="images/vecteezy_3d-paper-and-pen-icon_18868596.png"
+                        alt="Some Fun">
+                    <h3>Garden Diary</h3>
+                    <a href="diary.html" class="explore-btn">Explore</a>
+                </div>
+            </div>
+        </section>
+
+
+        <!--Our best end-->
+        <section class="gallery-section">
+            <h2>Our Garden Gallery</h2>
+            <p class="gallery-subtitle">A glimpse into our green paradise</p>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="images/GettyImages-1317221181_55_660x440.webp" alt="Garden 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/hibi.jpg" alt="Garden 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/planty.jpg" alt="Garden 3">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/istockphoto-1399726152-612x612.jpg" alt="Garden 4">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/shivani-wholesale-nursery-bhestan-surat-plant-nurseries-yitgdbobb6.webp"
+                        alt="Garden 5">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/hanging-basketrack-1.jpg" alt="Garden 6">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/nursery-plants.jpg" alt="Garden 6">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/pinky.jpg" alt="Garden 6">
+                </div>
+            </div>
+        </section>
+        <style>
+            .gallery-section {
+                padding: 60px 20px;
+                text-align: center;
+            }
+
+            .gallery-section h2 {
+                font-size: 36px;
+                font-weight: 600;
+                color: #2e7d32;
+                margin-bottom: 10px;
+                position: relative;
+            }
+
+            .gallery-subtitle {
+                font-size: 18px;
+                color: #4d704d;
+                margin-bottom: 40px;
+            }
+
+            .gallery {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+                gap: 25px;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 10px;
+            }
+
+            .gallery-item {
+                overflow: hidden;
+                border-radius: 16px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+                position: relative;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .gallery-item::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                border: 2px solid rgba(46, 125, 50, 0.2);
+                border-radius: 16px;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            .gallery-item:hover::before {
+                opacity: 1;
+            }
+
+            .gallery-item:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+            }
+
+            .gallery-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.4s ease;
+                display: block;
+            }
+
+            .gallery-item:hover img {
+                transform: scale(1.07);
+            }
+        </style>
+        <!--indoor-->
+        <section class="product" id="available">
+            <h1 class="heading"><i class="fa-solid fa-seedling" aria-hidden="true"></i>INDOOR pLANts</h1>
+            <div class="line"></div>
+            <!--cactus-->
+            <div class="box-container">
+                <div class="box" style="margin: 2rem;">
+
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-share"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <img src="images/indoor plants/cactus.webp" alt="" class="product-img">
+                    <h3 class="product-title">Cactus</h3>
+                    <h2>known for fleshy stems, spines (modified leaves), <br> and ability to store water, making them
+                        low-maintenance and suitable for indoor environments</h2>
+                    <br>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <br>
+                    <div class="price">
+                        $5
+                    </div>
+                    <a href="#" class="btn"
+                        style="color: #fcfdfc; background-color: green; padding: 1rem; font-size: 1.5rem;">Add To
+                        Cart</a>
+                </div>
+                <!--Aloevera-->
+                <div class="box" style="margin: 2rem;">
+
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-share"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <img src="images/indoor plants/image-1000x1000 (1).jpg" alt="" class="product-img">
+                    <h3 class="product-title">AloeVera</h3>
+                    <h2>(It is a succulent plant known for its <br>medicinal and skincare benefits.)</h2>
+                    <br>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <br>
+                    <div class="price">
+                        $6
+                    </div>
+                    <a href="#" class="btn"
+                        style="color: #fcfdfc; background-color: green; padding: 1rem; font-size: 1.5rem;">Add To
+                        Cart</a>
+                </div>
+                <!--banboo plant-->
+                <div class="box-container"></div>
+                <div class="box" style="margin: 2rem;">
+
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-share"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <img src="images/indoor plants/bambooplantreal.webp" alt="" class="product-img">
+                    <h3 class="product-title">bamboo plant</h3>
+                    <h2>a popular houseplant known for its easy care and symbolic meaning of good luck and prosperity,
+                        often
+                        <br> grown in water with pebbles or in soil.
+                    </h2>
+                    <br>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <br>
+                    <div class="price">
+                        $4
+                    </div>
+                    <a href="#" class="btn"
+                        style="color: #fcfdfc; background-color: green; padding: 1rem; font-size: 1.5rem;">Add To
+                        Cart</a>
+                </div>
+                <!--ficus bonsai plant-->
+                <div class="box-container"></div>
+                <div class="box" style="margin: 2rem;">
+
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-share"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <img src="images/indoor plants/ficus bonsai plant.webp" alt="" class="product-img">
+                    <h3 class="product-title">ficus bonsai plant</h3>
+                    <h2>Ficus bonsai, also known as a weeping fig or ficus tree, is a popular known for its curved
+                        trunk,
+                        dark green, oval leaves, and adaptability.</h2>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <br>
+                    <div class="price">
+                        $5
+                    </div>
+                    <a href="#" class="btn"
+                        style="color: #fcfdfc; background-color: green; padding: 1rem; font-size: 1.5rem;">Add To
+                        Cart</a>
+                </div>
+                <!--snake plant-->
+                <div class="box-container"></div>
+                <div class="box" style="margin: 2rem;">
+
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-share"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <img src="images/indoor plants/snakeplant.webp" alt="" class="product-img">
+                    <h3 class="product-title">Snake Plant</h3>
+                    <h2>is a popular houseplant recognized for its stiff, <br> sword-shaped leaves, often with a
+                        variegated
+                        pattern, and its ability to thrive in low-light conditions</h2>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <br>
+                    <div class="price">
+                        $5
+                    </div>
+                    <a href="#" class="btn"
+                        style="color: #fcfdfc; background-color: green; padding: 1rem; font-size: 1.5rem;">Add To
+                        Cart</a>
+                    <!--money plant-->
+                </div>
+                <div class="box-container"></div>
+                <div class="box" style="margin: 2rem;">
+
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-share"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <img src="images/indoor plants/money plant.webp" alt="" class="product-img">
+                    <h3 class="product-title">money plant</h3>
+                    <h2> Highly adaptable, versatile, low maintenance, and timeless, the Money Plant Golden graces
+                        almost
+                        <br> every garden, everywhere.
+                    </h2>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <br>
+                    <div class="price">
+                        $5
+                    </div>
+                    <a href="#" class="btn"
+                        style="color: #fcfdfc; background-color: green; padding: 1rem; font-size: 1.5rem;">Add To
+                        Cart</a>
+                </div>
+                <!--peacock plant-->
+                <div class="box-container"></div>
+                <div class="box" style="margin: 2rem;">
+
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-share"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <img src="images/indoor plants/peacock plant.webp" alt="" class="product-img">
+                    <h3 class="product-title">peacock plant</h3>
+                    <h2>the Peacock plant is a stunning indoor plant with patterned leaves that resemble the <br>
+                        delicate
+                        feathers of a peacock</h2>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <br>
+                    <div class="price">
+                        $5
+                    </div>
+                    <a href="#" class="btn"
+                        style="color: #fcfdfc; background-color: green; padding: 1rem; font-size: 1.5rem;">Add To
+                        Cart</a>
+                </div>
+                <!--Monstera Deliciosa-->
+                <div class="box-container"></div>
+                <div class="box" style="margin: 2rem;">
+
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-share"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <img src="images/indoor plants/Monstera Deliciosa Plant.webp" alt="" class="product-img">
+                    <h3 class="product-title">Monstera Deliciosa</h3>
+                    <h2>The Monstera Deliciosa plant adds tropical <br> charm with its iconic split leaves and easy <br>
+                        care needs for any indoor space.</h2>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <br>
+                    <div class="price">
+                        $5
+                    </div>
+                    <a href="#" class="btn"
+                        style="color: #fcfdfc; background-color: green; padding: 1rem; font-size: 1.5rem;">Add To
+                        Cart</a>
+
+                </div>
+
+
+            </div>
+        </section>
+        <!--indoor plants end-->
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <!--explore Banner-->
+        <section class="banner-container" id="explore">
+            <div class="banner">
+                <img src="images/g3.jpg" alt="">
+                <div class="content">
+                    <h3>Indoor Plants</h3>
+                    <a href="https://oxy-plants.com/blog/" class="btn" style="display: inline-block;
+                margin-top: 1rem;
+                padding: .9rem 2rem;
+                background-color: #1cc34c;
+                color: #f8fbf9;
+                font-size: 1.7rem;
+                border-radius: 2px;
+                cursor: pointer;">Explore</a>
+                </div>
+            </div>
+            <div class="banner">
+                <img src="images/g1.jpg" alt="">
+                <div class="content">
+                    <h3>Flower Pots</h3>
+                    <a href="https://kellogggarden.com/blog/flower-gardening/" class="btn" style="display: inline-block;
+                margin-top: 1rem;
+                padding: .9rem 2rem;
+                background-color: #1cc34c;
+                color: #f8fbf9;
+                font-size: 1.7rem;
+                border-radius: 2px;
+                cursor: pointer;">Explore</a>
+                </div>
+            </div>
+        </section>
+        <!--explore Banner end-->
+
+        <!--flower pots-->
+        <!--periwinkle-->
+        <section class="product" id="flower">
+            <h1 class="heading"><i class="fa-solid fa-seedling" aria-hidden="true"></i>FLOWER POTS</h1>
+            <div class="line"></div>
+            <div class="box-container">
+                <div class="box" style="margin: 2rem;">
+
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-share"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <img src="images/flowerpots/a37.jpg" alt="" class="product-img">
+                    <h3 class="product-title">periwinkle</h3>
+                    <h2>grows 7 to 24 inches high and wide,<br> forming a mound of colorful flowers in white,<br> pink,
+                        or
+                        rosy-purple on brittle stems</h2>
+                    <br>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <br>
+                    <div class="price">
+                        $5
+                    </div>
+                    <a href="#" class="btn"
+                        style="color: #fcfdfc; background-color: green; padding: 1rem; font-size: 1.5rem;">Add To
+                        Cart</a>
+                </div>
+                <!--lily-->
+                <div class="box" style="margin: 2rem;">
+
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-share"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <img src="images/flowerpots/a38.jpg" alt="" class="product-img">
+                    <h3 class="product-title">Lily</h3>
+                    <h2>Lilies typically feature 6-tepaled flowers in a variety <br> of shapes (trumpet, funnel, cup,
+                        bell,
+                        bowl or flat), sometimes nodding or with reflexed petals</h2>
+                    <br>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <br>
+                    <div class="price">
+                        $6
+                    </div>
+                    <a href="#" class="btn"
+                        style="color: #fcfdfc; background-color: green; padding: 1rem; font-size: 1.5rem;">Add To
+                        Cart</a>
+                </div>
+                <!--Rose-->
+                <div class="box-container"></div>
+                <div class="box" style="margin: 2rem;">
+
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-share"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <img src="images/flowerpots/fl2.jpg" alt="" class="product-img">
+                    <h3 class="product-title">pink Rose</h3>
+                    <h2>(It is a symbol of love and beauty, <br>admired for its fragrance, vibrant colors, and numerous
+                        skincare and health benefits)</h2>
+                    <br>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <br>
+                    <div class="price">
+                        $4
+                    </div>
+                    <a href="#" class="btn"
+                        style="color: #fcfdfc; background-color: green; padding: 1rem; font-size: 1.5rem;">Add To
+                        Cart</a>
+                </div>
+                <!--Bouganvilla-->
+                <div class="box-container"></div>
+                <div class="box" style="margin: 2rem;">
+
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-share"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <img src="images/flowerpots/bouganvilla.jpg" alt="" class="product-img">
+                    <h3 class="product-title">pink bouganvilla</h3>
+                    <h2>grows as a woody vine or shrub, reaching 15 to 40 feet (4.6 to 12.2 m) with pink heart-shaped
+                        leaves
+                        <br> and thorny, pubescent stems
+                    </h2>
+                    <div class="stars">
+
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="price">
+                        $5
+                    </div>
+
+                    <a href="#" class="btn"
+                        style="color: #fcfdfc; background-color: green; padding: 1rem; font-size: 1.5rem;">Add To
+                        Cart</a>
+                </div>
+                <!--Plant1-->
+                <div class="box-container"></div>
+                <div class="box" style="margin: 2rem;">
+
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-share"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <img src="images/flowerpots/hibiscus.jpg" alt="" class="product-img">
+                    <h3 class="product-title">Pink hibiscus</h3>
+                    <h2>The hibiscus is an evergreen shrub, growing to a maximum of 10 m in the wild. Its bark is
+                        light-grey, easy to peel and smooth. </h2>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <br>
+                    <div class="price">
+                        $5
+                    </div>
+                    <a href="#" class="btn"
+                        style="color: #fcfdfc; background-color: green; padding: 1rem; font-size: 1.5rem;">Add To
+                        Cart</a>
+                    <!--Champa-->
+                </div>
+                <div class="box-container"></div>
+                <div class="box" style="margin: 2rem;">
+
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-share"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <img src="images/flowerpots/sonchafa.webp" alt="" class="product-img">
+                    <h3 class="product-title">Champa</h3>
+                    <h2>also known as Sonchafa, is a highly fragrant <br> flowering tree cherished for its bright
+                        orange,
+                        aromatic flowers.</h2>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+
+
+                    <br>
+                    <div class="price">
+                        $4
+                    </div>
+                    <a href="#" class="btn"
+                        style="color: #fcfdfc; background-color: green; padding: 1rem; font-size: 1.5rem;">Add To
+                        Cart</a>
+                </div>
+                <!--jasmine-->
+                <div class="box-container"></div>
+                <div class="box" style="margin: 2rem;">
+
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-share"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <img src="images/flowerpots/jasmine.jpg" alt="" class="product-img">
+                    <h3 class="product-title">jasmine</h3>
+                    <h2>fragrant flowering plants known for their sweet aroma, with climbing or shrubby growth
+                        habits,<br>
+                        often used in perfumes, teas, and decorations</h2>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <br>
+                    <div class="price">
+                        $4
+                    </div>
+                    <a href="#" class="btn"
+                        style="color: #fcfdfc; background-color: green; padding: 1rem; font-size: 1.5rem;">Add To
+                        Cart</a>
+                </div>
+                <!--marigold-->
+                <div class="box-container"></div>
+                <div class="box" style="margin: 2rem;">
+
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-share"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <img src="images/flowerpots/marigold.jpg" alt="" class="product-img">
+                    <h3 class="product-title">Marigold</h3>
+                    <h2>vibrant, daisy-like flowers in shades of yellow,<br> orange and red commonly used in gardens and
+                        as
+                        cut flowers</h2>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <br>
+                    <div class="price">
+                        $4
+                    </div>
+                    <a href="#" class="btn"
+                        style="color: #fcfdfc; background-color: green; padding: 1rem; font-size: 1.5rem;">Add To
+                        Cart</a>
+                </div>
+            </div>
+            <!--flower pot end-->
+
+            <br>
+            <!--deal section-->
+            <section class="deal">
+
+                <h1 class="heading">Deal of the season!!</h1>
+                <div class="row">
+                    <div class="countdown-container">
+                        <h3 class="title">dont miss this exciting deal!</h3>
+                        <p> Spring Sale – Up to 50% OFF on selected indoor plants! <br>
+                            First Order Discount – Get 10% OFF when you sign up! <br>
+                            Buy 2, Get 1 Free on all flowering plants! <br>
+                            Free Shipping on orders above ₹999! <br>
+                            Combo Deals – Buy More, Save More! <br>
+
+                        </p>
+                        <div class="countdown">
+                            <div class="time-box">
+                                <span id="days">00</span>
+                                <p>Days</p>
+                            </div>
+                            <div class="time-box">
+                                <span id="hours">00</span>
+                                <p>Hours</p>
+                            </div>
+                            <div class="time-box">
+                                <span id="minutes">00</span>
+                                <p>Minutes</p>
+                            </div>
+                            <div class="time-box">
+                                <span id="seconds">00</span>
+                                <p>Seconds</p>
+                            </div>
+                        </div>
+
+                        <img src="images/o4.jpeg" alt="Plant Image" class="timer-image">
+                    </div>
+
+                </div>
+
+                </div>
+            </section>
+            <!--deal section end -->
+            <br>
+
+            <!--garden tools-->
+            <h1 class="heading"><i class="fa-solid fa-seedling" aria-hidden="true"></i>GARDEN TOOLS</h1>
+            <div class="line"></div>
+            <!--Axe-->
+            <section class="product" id="tools"></section>
+            <div class="box-container">
+                <div class="box" style="margin: 2rem;">
+
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-share"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <img src="images/garden tools/Ax.jpg" alt="" class="product-img">
+                    <h3 class="product-title">Garden Axe</h3>
+                    <h2> a versatile tool designed for cutting, chopping, featuring a sharp, durable blade attached to a
+                        <br>sturdy handle also for preparing firewood
+                    </h2>
+                    <br>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <br>
+                    <div class="price">
+                        $10
+                    </div>
+                    <a href="#" class="btn"
+                        style="color: #fcfdfc; background-color: green; padding: 1rem; font-size: 1.5rem;">Add To
+                        Cart</a>
+                </div>
+                <!--gloves-->
+                <div class="box" style="margin: 2rem;">
+
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-share"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <img src="images/garden tools/Deer Leather Gardening Gloves, Yellow, Small.jpg" alt=""
+                        class="product-img">
+                    <h3 class="product-title">Gloves</h3>
+                    <h2>Made from durable, breathable fabric to provide comfort and protection during various gardening
+                        <br>
+                        tasks and keeping dirt and debris away
+                    </h2>
+                    <br>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <br>
+                    <div class="price">
+                        $8.2
+                    </div>
+                    <a href="#" class="btn"
+                        style="color: #fcfdfc; background-color: green; padding: 1rem; font-size: 1.5rem;">Add To
+                        Cart</a>
+                </div>
+                <!--shears-->
+                <div class="box-container"></div>
+                <div class="box" style="margin: 2rem;">
+
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-share"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <img src="images/garden tools/Garden Shears.jpg" alt="" class="product-img">
+                    <h3 class="product-title">Garden Shears</h3>
+                    <h2> also known as pruning shears or hand pruners, are scissor-like tools used for cutting plant
+                        stems
+                        and branches,used forpruning shrubs and hedges</h2>
+                    <br>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <br>
+                    <div class="price">
+                        $8.5
+                    </div>
+                    <a href="#" class="btn"
+                        style="color: #fcfdfc; background-color: green; padding: 1rem; font-size: 1.5rem;">Add To
+                        Cart</a>
+                </div>
+                <!--trowel-->
+                <div class="box-container"></div>
+                <div class="box" style="margin: 2rem;">
+
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-share"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <img src="images/garden tools/10d38b21-e59c-4b5e-b0a3-eecbbe7472db.jpg" alt="" class="product-img">
+                    <h3 class="product-title">Hand trowel</h3>
+                    <h2>This device digs deep into the soil and keeps your garden clean of weeds without causing
+                        <br>much
+                        damage to surrounding trees.
+                    </h2>
+                    <br>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <br>
+                    <div class="price">
+                        $7.8
+                    </div>
+                    <a href="#" class="btn"
+                        style="color: #fcfdfc; background-color: green; padding: 1rem; font-size: 1.5rem;">Add To
+                        Cart</a>
+                </div>
+                <!--trolley-->
+                <div class="box-container"></div>
+                <div class="box" style="margin: 2rem;">
+
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-share"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <img src="images/garden tools/b034d83b-d659-4f4b-9c8c-39d258a6bdfb.jpg" alt="" class="product-img">
+                    <h3 class="product-title">garden trolley</h3>
+                    <h2>A versatile, heavy-duty cart ideal for gardens, warehouses, and uneven terrains, enhancing your
+                        transport efficiency and ease.</h2>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <br>
+                    <div class="price">
+                        $50
+                    </div>
+                    <a href="#" class="btn"
+                        style="color: #fcfdfc; background-color: green; padding: 1rem; font-size: 1.5rem;">Add To
+                        Cart</a>
+                    <!--watering can-->
+                </div>
+                <div class="box-container"></div>
+                <div class="box" style="margin: 2rem;">
+
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-share"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <img src="images/garden tools/c83a923d-3b1f-4a59-9be8-faa82bf4d97f.jpg" alt="" class="product-img">
+                    <h3 class="product-title">watering can</h3>
+                    <h2>a portable container, typically with a handle and a spout with a perforated nozzle, used to
+                        water
+                        plants by hand, often made of metal</h2>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <br>
+                    <div class="price">
+                        $10
+                    </div>
+                    <a href="#" class="btn"
+                        style="color: #fcfdfc; background-color: green; padding: 1rem; font-size: 1.5rem;">Add To
+                        Cart</a>
+                </div>
+                <!--sickle-->
+                <div class="box-container"></div>
+                <div class="box" style="margin: 2rem;">
+
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-share"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <img src="images/garden tools/garden-sickles-1576914585-5216833 (1).jpeg" alt=""
+                        class="product-img">
+                    <h3 class="product-title">Garden sickle</h3>
+                    <h2>one of the most common hand tools used for harvesting of the crops, grass and cutting of other
+                        vegetative matters</h2>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <br>
+                    <div class="price">
+                        $8.5
+                    </div>
+                    <a href="#" class="btn"
+                        style="color: #fcfdfc; background-color: green; padding: 1rem; font-size: 1.5rem;">Add To
+                        Cart</a>
+                </div>
+                <!--garden claw-->
+                <div class="box-container"></div>
+                <div class="box" style="margin: 2rem;">
+
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-share"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <img src="images/garden tools/Gardening Tools _ Buy Sprayer Online _ Watering Can _ Sprinkler.jpg"
+                        alt="" class="product-img">
+                    <h3 class="product-title">garden claw</h3>
+                    <h2>It is a gardening tool used for loosening soil, <br>aerating the ground, and removing weeds</h2>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <br>
+                    <div class="price">
+                        $10
+                    </div>
+                    <a href="#" class="btn"
+                        style="color: #fcfdfc; background-color: green; padding: 1rem; font-size: 1.5rem;">Add To
+                        Cart</a>
+
+                </div>
+
+
+            </div>
+
+            <!--garden tools end-->
+            <br>
+            <br>
+            <br>
+            <br>
+            <style>
+                body {
+                    margin: 0;
+                    font-family: 'Poppins', sans-serif;
+                }
+
+                .sale-banner {
+                    background: linear-gradient(to right, #0e471b, #9bf4a7);
+                    color: white;
+                    text-align: center;
+                    padding: 20px 10px;
+                    font-size: 24px;
+                    font-weight: bold;
+                    position: relative;
+                    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    animation: slideIn 1s ease-in-out;
+                }
+
+                .sale-banner span {
+                    color: yellow;
+                    animation: blink 1.5s infinite;
+                }
+
+                @keyframes blink {
+                    0% {
+                        opacity: 1;
+                    }
+
+                    50% {
+                        opacity: 0.6;
+                    }
+
+                    100% {
+                        opacity: 1;
+                    }
+                }
+
+                @keyframes slideIn {
+                    from {
+                        transform: translateY(-100%);
+                        opacity: 0;
+                    }
+
+                    to {
+                        transform: translateY(0);
+                        opacity: 1;
+                    }
+                }
+
+                .close-btn {
+                    position: absolute;
+                    right: 20px;
+                    top: 10px;
+                    background: white;
+                    color: #551f0f;
+                    border: none;
+                    padding: 8px 12px;
+                    cursor: pointer;
+                    font-weight: bold;
+                    border-radius: 50%;
+                    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+                    transition: 0.3s;
+                }
+
+                .close-btn:hover {
+                    background: #f1f1f1;
+                    transform: scale(1.1);
+                }
+            </style>
+
+
+
+            <div class="sale-banner" id="saleBanner">
+                🚀 Limited Time Offer! Get up to <span>50% OFF</span> on all seeds 🌱
+                <button class="close-btn" onclick="closeBanner()">&times;</button>
+            </div>
+
+            <script>
+                function closeBanner() {
+                    document.getElementById("saleBanner").style.display = "none";
+                }
+            </script>
+            <br>
+            <br>
+            <br>
+            <br>
+            <!--explore Banner-->
+            <section class="banner-container" id="explore">
+                <div class="banner">
+                    <img src="images/gds.jpg" alt="">
+                    <div class="content">
+                        <h3>Garden Tools</h3>
+                        <a href="https://www.allthatgrows.in/blogs/posts/gardening-tools" class="btn" style="display: inline-block;
+                margin-top: 1rem;
+                padding: .9rem 2rem;
+                background-color: #1cc34c;
+                color: #f8fbf9;
+                font-size: 1.7rem;
+                border-radius: 2px;
+                cursor: pointer;">Explore</a>
+                    </div>
+                </div>
+                <div class="banner">
+                    <img src="images/sd.jpg" alt="">
+                    <div class="content">
+                        <h3>Seeds</h3>
+                        <a href="https://www.ugaoo.com/blogs/gardening-basics/10-seed-sowing-seed-starting-tips"
+                            class="btn" style="display: inline-block;
+                margin-top: 1rem;
+                padding: .9rem 2rem;
+                background-color: #1cc34c;
+                color: #f8fbf9;
+                font-size: 1.7rem;
+                border-radius: 2px;
+                cursor: pointer;">Explore</a>
+                    </div>
+                </div>
+            </section>
+            <!--explore Banner end-->
+
+            <!--seeds-->
+            <section class="product" id="seeds"></section>
+            <h1 class="heading"><i class="fa-solid fa-seedling" aria-hidden="true"></i>seeds</h1>
+            <div class="line"></div>
+            <!--TulsiPlant-->
+            <div class="box-container">
+                <div class="box" style="margin: 2rem;">
+
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-share"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <img src="images/seeds/chillyseeds.jpg" alt="" class="product-img">
+                    <h3 class="product-title">chilli seeds</h3>
+                    <h2> minimum 100 gram per order</h2>
+                    <br>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <br>
+                    <div class="price">
+                        $3.5
+                    </div>
+                    <a href="#" class="btn"
+                        style="color: #fcfdfc; background-color: green; padding: 1rem; font-size: 1.5rem;">Add To
+                        Cart</a>
+                </div>
+                <!--cori-->
+                <div class="box" style="margin: 2rem;">
+
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-share"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <img src="images/seeds/coriandar-seeds.png" alt="" class="product-img">
+                    <h3 class="product-title">coriander seeds</h3>
+                    <h2>minimum 100 gram per order</h2>
+                    <br>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <br>
+                    <div class="price">
+                        $3.5
+                    </div>
+                    <a href="#" class="btn"
+                        style="color: #fcfdfc; background-color: green; padding: 1rem; font-size: 1.5rem;">Add To
+                        Cart</a>
+                </div>
+                <!--tulsi-->
+                <div class="box-container"></div>
+                <div class="box" style="margin: 2rem;">
+
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-share"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <img src="images/seeds/Tulsi-Seeds-Open.jpg" alt="" class="product-img">
+                    <h3 class="product-title">tulsi seeds</h3>
+                    <h2>minimum 100 gram per order</h2>
+                    <br>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <br>
+                    <div class="price">
+                        $2.5
+                    </div>
+                    <a href="#" class="btn"
+                        style="color: #fcfdfc; background-color: green; padding: 1rem; font-size: 1.5rem;">Add To
+                        Cart</a>
+                </div>
+                <!--musk-->
+                <div class="box-container"></div>
+                <div class="box" style="margin: 2rem;">
+
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-share"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <img src="images/seeds/musk melon.jpg" alt="" class="product-img">
+                    <h3 class="product-title">muskmelon seeds</h3>
+                    <h2>minimum 100 gram per order</h2>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <br>
+                    <div class="price">
+                        $3.5
+                    </div>
+                    <a href="#" class="btn"
+                        style="color: #fcfdfc; background-color: green; padding: 1rem; font-size: 1.5rem;">Add To
+                        Cart</a>
+                </div>
+                <!--sunflower-->
+                <div class="box-container"></div>
+                <div class="box" style="margin: 2rem;">
+
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-share"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <img src="images/seeds/Sunflowerseed3.webp" alt="" class="product-img">
+                    <h3 class="product-title">sunflower seeds</h3>
+                    <h2>minimum 100 gram per order</h2>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <br>
+                    <div class="price">
+                        $3.5
+                    </div>
+                    <a href="#" class="btn"
+                        style="color: #fcfdfc; background-color: green; padding: 1rem; font-size: 1.5rem;">Add To
+                        Cart</a>
+                    <!--feng-->
+                </div>
+                <div class="box-container"></div>
+                <div class="box" style="margin: 2rem;">
+
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-share"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <img src="images/seeds/FenugreekSeeds.webp" alt="" class="product-img">
+                    <h3 class="product-title">fenugreek seeds</h3>
+                    <h2>minimum 100 gram per order</h2>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <br>
+                    <div class="price">
+                        $2.5
+                    </div>
+                    <a href="#" class="btn"
+                        style="color: #fcfdfc; background-color: green; padding: 1rem; font-size: 1.5rem;">Add To
+                        Cart</a>
+                </div>
+                <!--onion-->
+                <div class="box-container"></div>
+                <div class="box" style="margin: 2rem;">
+
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-share"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <img src="images/seeds/onionseeds.jpg" alt="" class="product-img">
+                    <h3 class="product-title">onion seeds</h3>
+                    <h2>minimum 100 gram per order</h2>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <br>
+                    <div class="price">
+                        $3
+                    </div>
+                    <a href="#" class="btn"
+                        style="color: #fcfdfc; background-color: green; padding: 1rem; font-size: 1.5rem;">Add To
+                        Cart</a>
+                </div>
+                <!--tomato-->
+                <div class="box-container"></div>
+                <div class="box" style="margin: 2rem;">
+
+                    <div class="icons">
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-share"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <img src="images/seeds/tomatoseeds.webp" alt="" class="product-img">
+                    <h3 class="product-title">tomato seeds</h3>
+                    <h2>minimum 100 gram per order</h2>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <br>
+                    <div class="price">
+                        $3.5
+                    </div>
+                    <a href="#" class="btn"
+                        style="color: #fcfdfc; background-color: green; padding: 1rem; font-size: 1.5rem;">Add To
+                        Cart</a>
+
+                </div>
+
+
+            </div>
+
+            <!--seeds end-->
+            <br>
+            <br>
+            <br>
+            <br>
+
+
+            <!--testimonial-->
+
+            <section class="testimonial" id="test">
+                <div class="bowl">
+                    <div class="head">
+                        <h1 class="heading">Testimonials</h1>
+                        <!-- Font Awesome (optional, for icons) -->
+                        <link rel="stylesheet"
+                            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+                        <section class="stats-section">
+                            <h2>Why Gardeners are Trusting Us?</h2>
+                            <p class="subtitle">Thousands of plant lovers choose us every season 🌿</p>
+
+                            <div class="stats-container">
+                                <div class="stat-card">
+                                    <i class="fas fa-seedling icon"></i>
+                                    <span class="count" data-target="1200">0</span>
+                                    <p>Plants Sold</p>
+                                </div>
+                                <div class="stat-card">
+                                    <i class="fas fa-smile-beam icon"></i>
+                                    <span class="count" data-target="850">0</span>
+                                    <p>Happy Customers</p>
+                                </div>
+                                <div class="stat-card">
+                                    <i class="fas fa-award icon"></i>
+                                    <span class="count" data-target="3">0</span>
+                                    <p>Years of Service</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <style>
+                            .stats-section {
+                                text-align: center;
+                                padding: 60px 20px;
+                                background: linear-gradient(to right, #dcedc8, #c8e6c9);
+                                font-family: 'Segoe UI', sans-serif;
+                            }
+
+                            .stats-section h2 {
+                                font-size: 2.5em;
+                                color: #2e7d32;
+                                margin-bottom: 10px;
+                            }
+
+                            .subtitle {
+                                font-size: 1.8em;
+                                color: #4b8b3b;
+                                margin-bottom: 40px;
+                            }
+
+                            .stats-container {
+                                display: flex;
+                                flex-wrap: wrap;
+                                justify-content: center;
+                                gap: 30px;
+                            }
+
+                            .stat-card {
+                                background: white;
+                                border-radius: 16px;
+                                padding: 30px 20px;
+                                width: 200px;
+                                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+                                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                            }
+
+                            .stat-card:hover {
+                                transform: translateY(-5px);
+                                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+                            }
+
+                            .stat-card .icon {
+                                font-size: 2.5em;
+                                color: #66bb6a;
+                                margin-bottom: 10px;
+                            }
+
+                            .stat-card .count {
+                                font-size: 2.2em;
+                                font-weight: bold;
+                                color: #388e3c;
+                            }
+
+                            .stat-card p {
+                                margin-top: 10px;
+                                color: #555;
+                                font-weight: 700;
+                            }
+                        </style>
+                        <script>
+                            document.addEventListener("DOMContentLoaded", () => {
+                                const counters = document.querySelectorAll(".count");
+                                const speed = 100;
+
+                                counters.forEach(counter => {
+                                    const updateCount = () => {
+                                        const target = +counter.getAttribute("data-target");
+                                        const count = +counter.innerText;
+
+                                        const increment = Math.ceil(target / speed);
+
+                                        if (count < target) {
+                                            counter.innerText = count + increment;
+                                            setTimeout(updateCount, 20);
+                                        } else {
+                                            counter.innerText = target;
+                                        }
+                                    };
+
+                                    updateCount();
+                                });
+                            });
+                        </script>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <h2>What people <span style="color: #1cc34c;">Are saying?</span></h2>
+                        <br>
+                        <p>At Green House, we take pride in delivering healthy plants and top-notch service. But
+                            don’t just
+                            take our word for it—see what our happy customers have to say!</p>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <div class="testimonial-box">
+                                <p>"Plants arrived fresh, well-packaged,<br> and in perfect condition. The plant
+                                    recommendation feature helped me <br>find the perfect plant for my home."</p>
+                            </div>
+                            <br>
+                            <div class="test-info">
+                                <img src="images/DALL·E 2025-03-21 09.48.35 - A modern and handsome Indian gardener with a confident smile, wearing a stylish traditional kurta and a well-fitted gardening apron. He has a well-gro.webp"
+                                    alt="">
+                                <h6>Mr xyz</h6>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="testimonial-box">
+                                <p>"Super happy with my purchase! <br> The delivery was quick, and the
+                                    <br>eco-friendly
+                                    packaging was a nice touch. <br>Definitely ordering more!"
+                                </p>
+                            </div>
+                            <br>
+                            <div class="test-info">
+                                <img src="images/sttphimpdgjifxksql9r-1.jpg" alt="">
+                                <h6>Ms abc</h6>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="testimonial-box">
+                                <p> "I was hesitant to buy plants<br> online, but green House <br> exceeded my
+                                    expectations!
+                                    <br>my monstera looks stunning."
+                                </p>
+                            </div>
+                            <br>
+                            <div class="test-info">
+                                <img src="images/ai-generated-a-handsome-gardener-stands-smiling-and-looking-at-the-camera-near-a-bush-with-tomatoes-free-photo.jpeg"
+                                    alt="">
+                                <h6>Mr def</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--testimonial end-->
+                <br>
+                <br>
+                <br>
+
+
+
+
+                <!--Login-->
+            </section>
+            <section class="login" id="login">
+                <h1 class="heading"> <i class="fa-solid fa-seedling" aria-hidden="true"></i>Register Here!</h1>
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="row">
+                    <div class="image">
+                        <img src="images/w3.jpeg" alt="">
+                    </div>
+
+                    <form action="">
+                        <h3>Sign Up</h3>
+                        <div class="inputBox">
+                            <span class="fas fa-user"></span>
+                            <input type="text" placeholder="Name">
+                        </div>
+                        <div class="inputBox">
+                            <span class="fas fa-envelope"></span>
+                            <input type="text" placeholder="Email">
+                        </div>
+                        <div class="inputBox">
+                            <span class="fas fa-phone"></span>
+                            <input type="number" placeholder="Phone">
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary py-3 px-4">Login</button>
+                        </div>
+                    </form>
+                </div>
+
+            </section>
+            <!--login end-->
+            <script>
+                document.querySelector("form").addEventListener("submit", async function (event) {
+                    event.preventDefault();
+
+                    const formData = {
+                        name: document.querySelector("input[placeholder='Name']").value,
+                        email: document.querySelector("input[placeholder='Email']").value,
+                        phone: document.querySelector("input[placeholder='Phone']").value,
+                    };
+
+                    const response = await fetch("http://localhost:5000/register", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(formData),
+                    });
+
+                    const data = await response.json();
+                    alert(data.message);
+                });
+            </script>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+
+
+
+
+
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <section class="icons-container">
+                <div class="icon">
+                    <img src="images/icons/free-delivery.png" alt="">
+                    <div class="content">
+                        <h3>free shipping</h3>
+                        <p>free shipping on order</p>
+                    </div>
+                </div>
+                <div class="icon">
+                    <img src="images/icons/cashback.png" alt="">
+                    <div class="content">
+                        <h3>100% Money Back</h3>
+                        <p>You have 30 days to return</p>
+                    </div>
+                </div>
+                <div class="icon">
+                    <img src="images/icons/secure-payment.png" alt="">
+                    <div class="content">
+                        <h3>Payment Secure</h3>
+                        <p>100% Secure Payment</p>
+                    </div>
+                </div>
+                <div class="icon">
+                    <img src="images/icons/care.png" alt="">
+                    <div class="content">
+                        <h3>support 24/7</h3>
+                        <p>Contact us anytime</p>
+                    </div>
+                </div>
+
+            </section>
+            <br>
+            <br>
+            <br>
+            <br>
+
+
+            <!--footer-->
+            <section class="footer">
+                <div class="footer">
+                    <div class="foot-cont">
+                        <div class="foot-box">
+                            <h3>Address</h3>
+                            <p>Nature Nest, Malnaka, <br> Ratnagiri</p>
+                            <img src="images/ChatGPT Image Apr 10, 2025, 07_14_38 AM.png" alt="" style="height: 10rem;">
+
+
+
+                        </div>
+                        <div class="dabba">
+                            <h3>Email</h3>
+                            <a href="#" class="link">naturenest@gmail.com</a>
+
+                        </div>
+                        <div class="dabba">
+                            <h3>Call us</h3>
+                            <p>+91 96--------</p>
+                        </div>
+
+                    </div>
+                    <div class="share">
+                        <a href="#" class="fab fa-facebook-f"></a>
+                        <a href="#" class="fab fa-instagram"></a>
+                        <a href="#" class="fab fa-twitter"></a>
+                        <a href="#" class="fab fa-pinterest-p"></a>
+                        <a href="#" class="fab fa-linkedin"></a>
+                    </div>
+
+                </div>
+            </section>
+
+            <!--footer end-->
+
+            <!-- Copyright Start -->
+            <div class="container-fluid copyright py-4">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                            &copy; <a class="border-bottom" href="#">Nature Nest</a> All Right Reserved.
+                        </div>
+                        <div class="col-md-6 text-center text-md-end">
+                            Designed By <a href="#" class="border-bottom">AM</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Copyright End -->
+
+            <!-- Floating Button -->
+            <button id="openMessageBox" class="floating-btn">
+                💬 Message Us
+            </button>
+
+            <!-- Modal Background -->
+            <div id="messageModal" class="modal-overlay">
+                <div class="modal-box">
+                    <div class="modal-header">
+                        <h2>🌱If You Have Any Query, Please Contact Us</h2>
+                        <button id="closeMessageBox" class="close-btn">&times;</button>
+                    </div>
+                    <form class="modal-form" id="contactForm">
+                        <label>
+                            Name
+                            <input type="text" name="name" placeholder="Your name" required>
+                        </label>
+
+                        <label>
+                            Email
+                            <input type="email" name="email" placeholder="you@example.com" required>
+                        </label>
+
+                        <label>
+                            Message
+                            <textarea name="message" rows="4" placeholder="What's on your mind?" required></textarea>
+                        </label>
+
+                        <button type="submit" class="submit-btn">✉️ Send Message</button>
+                    </form>
+
+                    <!-- Success Message -->
+                    <!-- Success Message -->
+                    <div id="successMessage" class="success-message">
+                        <div class="checkmark">&#10003;</div>
+                        <p>Thanks! Your message has been sent 🌿</p>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!-- Styles -->
+            <style>
+                /* Success Message */
+                .success-message {
+                    display: none;
+                    text-align: center;
+                    padding: 20px;
+                    animation: fadeSlideIn 0.5s ease;
+                }
+
+                .success-message .checkmark {
+                    font-size: 48px;
+                    color: #2e7d32;
+                    margin-bottom: 10px;
+                    animation: pop 0.5s ease;
+                }
+
+                @keyframes fadeSlideIn {
+                    from {
+                        opacity: 0;
+                        transform: translateY(20px);
+                    }
+
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+
+                @keyframes pop {
+                    0% {
+                        transform: scale(0.7);
+                        opacity: 0;
+                    }
+
+                    100% {
+                        transform: scale(1.1);
+                        opacity: 1;
+                    }
+                }
+
+
+                /* Floating Button */
+                .floating-btn {
+                    position: fixed;
+                    bottom: 20px;
+                    right: 20px;
+                    background-color: #2e7d32;
+                    color: white;
+                    padding: 14px 20px;
+                    border: none;
+                    border-radius: 50px;
+                    font-size: 16px;
+                    cursor: pointer;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                    transition: background 0.3s ease, transform 0.2s ease;
+                    z-index: 1000;
+                }
+
+                .floating-btn:hover {
+                    background-color: #1b5e20;
+                    transform: scale(1.05);
+                }
+
+                /* Modal Overlay */
+                .modal-overlay {
+                    position: fixed;
+                    inset: 0;
+                    background-color: rgba(0, 0, 0, 0.4);
+                    display: none;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 999;
+                }
+
+                .modal-overlay.show {
+                    display: flex;
+                }
+
+                /* Modal Box */
+                .modal-box {
+                    background-color: #fefefe;
+                    margin-top: 10rem;
+                    padding: 25px 30px;
+                    border-radius: 16px;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                    max-width: 450px;
+                    width: 90%;
+                    animation: fadeIn 0.3s ease-out;
+                }
+
+                @keyframes fadeIn {
+                    from {
+                        transform: scale(0.95);
+                        opacity: 0;
+                    }
+
+                    to {
+                        transform: scale(1);
+                        opacity: 1;
+                    }
+                }
+
+                /* Modal Header */
+                .modal-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 20px;
+                }
+
+                .modal-header h2 {
+                    margin: 0;
+                    color: #2e7d32;
+                    font-size: 22px;
+                }
+
+                .close-btn {
+                    background: none;
+                    border: none;
+                    font-size: 28px;
+                    color: #555;
+                    cursor: pointer;
+                    transition: color 0.2s ease;
+                }
+
+                .close-btn:hover {
+                    color: #c62828;
+                }
+
+                /* Form */
+                .modal-form label {
+                    display: block;
+                    margin-bottom: 15px;
+                    color: #444;
+                    font-weight: 500;
+                }
+
+                .modal-form input,
+                .modal-form textarea {
+                    width: 100%;
+                    padding: 10px 14px;
+                    margin-top: 6px;
+                    border: 1px solid #ccc;
+                    border-radius: 10px;
+                    font-size: 14px;
+                    transition: border-color 0.2s ease;
+                }
+
+                .modal-form input:focus,
+                .modal-form textarea:focus {
+                    border-color: #66bb6a;
+                    outline: none;
+                }
+
+                .submit-btn {
+                    display: inline-block;
+                    background-color: #2e7d32;
+                    color: white;
+                    padding: 12px 20px;
+                    border: none;
+                    border-radius: 10px;
+                    cursor: pointer;
+                    font-size: 15px;
+                    margin-top: 10px;
+                    width: 100%;
+                    transition: background 0.3s ease;
+                }
+
+                .submit-btn:hover {
+                    background-color: #1b5e20;
+                }
+            </style>
+
+            <!-- JavaScript -->
+            <script>
+                const openBtn = document.getElementById('openMessageBox');
+                const closeBtn = document.getElementById('closeMessageBox');
+                const modal = document.getElementById('messageModal');
+
+                openBtn.addEventListener('click', () => {
+                    modal.classList.add('show');
+                });
+
+                closeBtn.addEventListener('click', () => {
+                    modal.classList.remove('show');
+                });
+
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.classList.remove('show');
+                    }
+                });
+                const form = document.querySelector('.modal-form');
+                const successBox = document.getElementById('successMessage');
+
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault(); // prevent actual form submission
+
+                    // Optionally: send data to backend here using fetch()
+
+                    // Hide form and show success message
+                    form.style.display = 'none';
+                    successBox.style.display = 'block';
+
+                    // Auto-close modal after 3 seconds
+                    setTimeout(() => {
+                        modal.classList.remove('show');
+                        successBox.style.display = 'none';
+                        form.reset();
+                        form.style.display = 'block';
+                    }, 3000);
+                });
+
+            </script>
+
+
+
+
+
+
+
+
+
+
+
+            <!-- Swiper CSS -->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+
+            <!-- Swiper JS -->
+            <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.0/lottie.min.js"></script>
+
+
+            <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+            <script src="script.js"></script>
+            <link rel="stylesheet" href="animate.css">
+            <link rel="stylesheet" href="bootsrap.css">
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </body>
+
+</html>

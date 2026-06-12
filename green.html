@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>community</title>
+
+
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a class="" href="index.html">NatureNest</a>
+        </div>
+    </nav>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background: linear-gradient(to right, #054215, #8dea61);
+            color: white;
+            padding: 15px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+        }
+
+        .navbar a.active {
+            background-color: #555;
+        }
+
+        .coontainer {
+            text-align: center;
+            background-color: #aef3b7;
+            padding: 2rem 3rem;
+            border-radius: 16px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+        }
+
+        h1 {
+            color: #388e3c;
+            margin-bottom: 1.5rem;
+        }
+
+        p {
+            color: #0e471b;
+            font-size: 1.7rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+
+
+        button {
+            background-color: #155824;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.7rem;
+            border-radius: 8px;
+            font-size: 1.7rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #388e3c;
+        }
+
+
+        .community-section {
+            background: #e0f2e9;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .community-section h2 {
+            color: #2c6e49;
+            font-size: 32px;
+        }
+
+        .community-section p {
+            color: #4a4a4a;
+            font-size: 18px;
+            max-width: 700px;
+            margin: 10px auto;
+        }
+
+        .join-btn {
+            display: inline-block;
+            background: #2c6e49;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 18px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .join-btn:hover {
+            background: #40e492;
+            color: #fff;
+        }
+
+        .community-posts {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            padding: 2rem;
+        }
+
+        .post {
+            background: white;
+            padding: 20px;
+            margin: 10px;
+            width: 250px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+
+
+        .post:hover {
+            background-color: #b9e8d0;
+            transform: scale(1.05);
+        }
+
+        .post img {
+            width: 100%;
+            height: 250px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .post h3 {
+            color: #2c6e49;
+            font-size: 20px;
+        }
+
+        .post p {
+            font-size: 20px;
+        }
+    </style>
+    <title>Join OUR Green Community</title>
+    <div class="coontainer">
+        <h1>Join the Green Community</h1>
+        <p>
+            Be part of a growing movement to protect our planet. 🌍<br />
+            We organize tree planting drives, clean-up events, and workshops to promote sustainability.
+            <br>Together, we can make a real difference.
+        </p>
+
+        <button id="join-btn">Join Now</button>
+    </div>
+
+    <script>
+        document.getElementById('join-btn').addEventListener('click', () => {
+            alert("Thanks for joining the Green Community! 🌿");
+            // You can also send data to backend here if needed
+            // fetch('/api/join', { method: 'POST', ... })
+        });
+    </script>
+    <section class="community-posts">
+        <div class="post">
+            <img src="images/DALL·E 2025-03-21 10.33.26 - A young woman with a cheerful expression tending to a lush green balcony garden. She is surrounded by potted plants, hanging vines, and colorful flowe.webp"
+                alt="User Plant">
+            <br>
+            <br>
+            <h3>emma's Urban Garden</h3>
+            <p>Turning small balconies into a green paradise! 🌱🌿</p>
+        </div>
+        <div class="post">
+            <img src="images/DALL·E 2025-03-21 10.35.34 - A friendly and knowledgeable gardener using compost and natural fertilizers for healthier plants. The person is outdoors in a lush green garden, weari.webp"
+                alt="User Plant">
+            <br>
+            <br>
+            <h3>stefan's Eco-Friendly Tips</h3>
+            <p>Using compost & natural fertilizers for healthier plants! 🌍</p>
+        </div>
+        </div>
+        <div class="post">
+            <img src="images/DALL·E 2025-03-21 10.56.42 - A creative and eco-conscious person repurposing plastic bottles into plant pots. They are in a workshop or outdoor setting, surrounded by upcycled pla.webp"
+                alt="User Plant">
+            <br>
+            <br>
+            <h3>James's Eco-Friendly DIY Innovation </h3>
+            <p>Turns plastic bottles into plant pots and promotes eco-friendly crafts.</p>
+        </div>
+        <div class="post">
+            <img src="images/DALL·E 2025-03-21 11.02.32 - A middle-aged woman organizing a tree-planting drive in a local community. She is outdoors, surrounded by volunteers and lush greenery, planting sapli.webp"
+                alt="User Plant">
+            <br>
+            <br>
+            <h3>lily as a Green Movement Organizer</h3>
+            <p>Organizes tree-planting drives in local communities.</p>
+        </div>
+    </section>
+    <!--bee-->
+    <div class="garden-buddy" onclick="showTip()">
+        <img src="images/—Pngtree—cartoon clipart cute vector insect_5528299.png" alt="Garden Buddy" />
+        <div id="buddy-tip" class="buddy-tip hidden">🌱 Drink water, like your plants!</div>
+    </div>
+    <style>
+        .garden-buddy {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            cursor: pointer;
+            animation: floaty 3s ease-in-out infinite;
+            z-index: 1000;
+        }
+
+        .garden-buddy img {
+            width: 90px;
+            transition: transform 0.3s ease;
+        }
+
+        .garden-buddy:hover img {
+            transform: rotate(5deg) scale(1.05);
+        }
+
+        .buddy-tip {
+            position: absolute;
+            bottom: 110%;
+            right: 0;
+            background-color: #ffffffcc;
+            color: #2f3e46;
+            padding: 10px 15px;
+            border-radius: 15px;
+            border: 2px solid #a7e0a5;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            white-space: nowrap;
+            font-size: 0.9rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        @keyframes floaty {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+    <script>
+        const tips = [
+            "🌱 Drink water, like your plants!",
+            "☀️ Sunlight makes everything better!",
+            "🪴 Talk to your plants — they love it!",
+            "🌼 Take time to bloom!",
+            "🧤 Don’t forget to repot sometimes!",
+            "🐝 Bees love wildflowers!",
+        ];
+
+        function showTip() {
+            const tipBox = document.getElementById("buddy-tip");
+            const randomTip = tips[Math.floor(Math.random() * tips.length)];
+            tipBox.textContent = randomTip;
+
+            tipBox.classList.remove("hidden");
+            setTimeout(() => {
+                tipBox.classList.add("hidden");
+            }, 3000);
+        }
+
+    </script>
+    <h1 style="font-size: 1.8rem; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;margin: 5rem; text-align: center">Share the beauty of your backyard blooms! 🌸
+        <br>Upload your favorite garden moments and watch your personal gallery grow.</h1>
+    <div class="gallery-container">
+        <h1>🌿 My Garden Gallery</h1>
+        <p>Upload your garden photos and see them bloom here!</p>
+
+        <input type="file" id="imageUploader" accept="image/*" />
+        <button onclick="uploadImage()">Upload</button>
+
+        <div id="gallery" class="gallery"></div>
+    </div>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+
+        .gallery-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2.5rem;
+            background: #ffffffee;
+            border-radius: 25px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-container:hover {
+            transform: scale(1.01);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.3rem;
+            color: #3e8e41;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        input[type="file"] {
+            padding: 0.5rem;
+            border-radius: 8px;
+            border: 1px solid #a3d9a5;
+            background-color: #f9fff9;
+            cursor: pointer;
+        }
+
+        button {
+            background: linear-gradient(to right, #4caf50, #8bc34a);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-left: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #388e3c, #689f38);
+            transform: scale(1.05);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+            padding: 0 1rem;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 18px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.06);
+            box-shadow: 0 15px 28px rgba(0, 0, 0, 0.18);
+
+            .image-wrapper {
+                position: relative;
+                border-radius: 18px;
+                overflow: hidden;
+            }
+
+            .delete-btn {
+                position: absolute;
+                top: 8px;
+                right: 8px;
+                background: rgba(255, 70, 70, 0.9);
+                border: none;
+                color: white;
+                font-size: 1rem;
+                border-radius: 50%;
+                width: 28px;
+                height: 28px;
+                cursor: pointer;
+                box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+                transition: transform 0.2s ease;
+            }
+
+            .delete-btn:hover {
+                transform: scale(1.1);
+            }
+
+        }
+    </style>
+    <script>
+        // Load saved images from localStorage
+        window.onload = () => {
+            const savedImages = JSON.parse(localStorage.getItem('gardenGallery')) || [];
+            savedImages.forEach(img => addToGallery(img));
+        };
+
+        function uploadImage() {
+            const fileInput = document.getElementById("imageUploader");
+            const file = fileInput.files[0];
+
+            if (!file) return alert("Please select an image!");
+
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const imgData = e.target.result;
+                addToGallery(imgData);
+
+                // Save to localStorage
+                const current = JSON.parse(localStorage.getItem('gardenGallery')) || [];
+                current.push(imgData);
+                localStorage.setItem('gardenGallery', JSON.stringify(current));
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+        function addToGallery(imageData) {
+            const gallery = document.getElementById("gallery");
+            const img = document.createElement("img");
+            img.src = imageData;
+            gallery.appendChild(img);
+        }
+        function addToGallery(imageData) {
+            const gallery = document.getElementById("gallery");
+
+            // Create image wrapper
+            const wrapper = document.createElement("div");
+            wrapper.classList.add("image-wrapper");
+
+            // Image element
+            const img = document.createElement("img");
+            img.src = imageData;
+
+            // Delete button
+            const delBtn = document.createElement("button");
+            delBtn.classList.add("delete-btn");
+            delBtn.innerHTML = "✖";
+            delBtn.onclick = function () {
+                wrapper.remove(); // remove from DOM
+                removeFromLocalStorage(imageData); // remove from localStorage
+            };
+
+            wrapper.appendChild(img);
+            wrapper.appendChild(delBtn);
+            gallery.appendChild(wrapper);
+        }
+
+        function removeFromLocalStorage(imageData) {
+            let current = JSON.parse(localStorage.getItem('gardenGallery')) || [];
+            current = current.filter(img => img !== imageData);
+            localStorage.setItem('gardenGallery', JSON.stringify(current));
+        }
+
+
+    </script>
+</body>
+
+</html>
